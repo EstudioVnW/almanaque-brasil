@@ -54,11 +54,6 @@ const Activities = (props) => {
   const [activities, setActivities] = useState(null);
   const [currentActivitie, setCurrentActivitie] = useState(1);
   const { trailId } = useParams();
-  const [isResend, setIsResend] = useState(false);
-
-  const handleResendModal = () => {
-    setIsResend(false);
-  };
 
   useEffect(() => {
     const trail = props.selectedTrails;
@@ -112,8 +107,6 @@ const Activities = (props) => {
           ? renderActivitie(activities[currentActivitie-1], props.registerAction)
           : <Title>Carregando</Title>
       }
-
-      {/*{!activities.length && <ModalErro />} */}
     </Container>
   );
 }

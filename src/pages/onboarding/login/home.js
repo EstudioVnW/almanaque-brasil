@@ -178,6 +178,7 @@ const Home = (props) => {
       props.history.push('/dashboard')
       console.log("User", user)
     }).catch(err => console.log("Error", err))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   async function federatedeSignin(provider) {

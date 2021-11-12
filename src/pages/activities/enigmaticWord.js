@@ -224,6 +224,7 @@ function EnigmaticWord({ activitie, registerAction, actionsBook }) {
     const useAllowScore = allowScore(activitie.trailId, activitie.id, listActionsBook);
     const useCorrectAnswer = activitie.answer.answer.toLowerCase();
     let userAnswer = "";
+    // eslint-disable-next-line array-callback-return
     enigmas.map(item => {
       userAnswer = `${userAnswer}${item.userInput}`
     })
