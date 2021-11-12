@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+//Styled
 const Container = styled.div`
   width: 80%;
   height: 65%;
@@ -8,8 +9,8 @@ const Container = styled.div`
   padding-top: ${props => props.isModal && '1rem'};
   ${({ isModal }) => isModal && `flex: 1`};
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
 
   overflow-y: auto; 
   ::-webkit-scrollbar {
@@ -66,9 +67,9 @@ const ContentImageText = ({ isModal, image, title, info }) => {
   return (
     <Container isModal={isModal}>
       <ImgBox>
-        <Img src={image} alt={"imagem da atividade"} />
+        <Img src={image} alt={"imagem da atividade"}  />
       </ImgBox>
-      <Title>{title}</Title>
+      {title && <Title>{title}</Title>}
       {info && !isModal && <Text>{info}</Text>}
     </Container>
   )

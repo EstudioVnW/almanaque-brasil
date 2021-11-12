@@ -90,26 +90,22 @@ const BoxContainer = styled.div`
 const Loader = ({dashboard}) => {
 
   useEffect(() => {
-    if(dashboard) handleCleanCaches();
+    if(dashboard === true) handleCleanCaches();
   })
 
   const handleCleanCaches = async () => {
-    console.log('een')
-
     const idToken = localStorage.getItem('idToken');
     const savedVersion = localStorage.getItem('version');
 
     try {
       const response = await axios({
         method: 'get',
-        // url: 'https://5ltaa6klie.execute-api.us-east-1.amazonaws.com/dev/version',
-        url: 'https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/version',
+        url: process.env.REACT_APP_VERSION_ENDPOINT,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `${idToken}`,
         },
       })
-      console.log('response', response)
 
       const dataResponse = response?.data.Items[0]?.version;
       const version = !!dataResponse ? dataResponse : 0;
@@ -133,8 +129,6 @@ const Loader = ({dashboard}) => {
 
   return (
     <Container>
-   { console.log('loader')}
-
       <Box>
         <>
           <Title>Espere só mais um pouquinho!</Title>
