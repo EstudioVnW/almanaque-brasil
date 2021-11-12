@@ -7,16 +7,15 @@ import aliases from './aliases';
 import skeleton from '../../../images/trails/map/skeleton.svg'
 
 const AlignToCenter = styled.main`
-  &::-webkit-scrollbar {
-    display: none;               /* width of the entire scrollbar */
-  }
-  /* position: fixed; */
-  background-color: #ebeeec;
-  /* bottom: 20px; */
-  height: 100%;
   min-width: 425px;
+  height: 100%;
+  background-color: #ebeeec;
   overflow: hidden;
   z-index: 0;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @media (max-width: 320px) {
     bottom: -32px;
@@ -25,28 +24,22 @@ const AlignToCenter = styled.main`
 
 const MapBackground = styled.div`
   position: fixed;
-  bottom: 0;
+  bottom: 1rem;
   max-width: 425px;
-  transform: scale(1,.975);
+  transform: scaleY(.975);
   min-height: 100%;
   height: -webkit-fill-available;
   
-  @media (max-width: 360px) {
-    /* left: -2rem; */
-    transform: scale(.9,.85);
-  }
-  @media (max-height: 630px) {
-    transform: scale(.8,.8);
-  }
-  
-  /* @media (max-width: 400px) {
+  @media (max-width: 400px) {
+    bottom: -.5rem;
     left: -1.5rem;
-  } */
+    transform: scaleY(.9);
+  }
   
   @media (max-width: 320px) {
-    left: -1rem;
-    bottom: -31px;
-    transform: scale(.8,.7);
+    left: -.5rem;
+    bottom: -1.5rem;
+    transform: scale(.8,.8);
   }
 `;
 
@@ -66,6 +59,10 @@ const Stone = styled.img`
   max-width: 5.25rem;
   transform: scale(1.22,1.25);
   cursor: pointer;
+
+  @media (max-width: 400px) {
+    transform: scale(1.05,1.2);
+  }
 `;
 
 const Skeleton = styled.img`
