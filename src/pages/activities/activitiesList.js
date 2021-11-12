@@ -165,6 +165,7 @@ const Activities = (props) => {
     const useCurrentActivity = props?.activities?.data[props.selectedTrails]?.name;
 
     setCurrentActivity(useCurrentActivity);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handlerNextActivitie = (index, activityId) => {

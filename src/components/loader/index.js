@@ -87,41 +87,47 @@ const BoxContainer = styled.div`
   bottom: 0;
 `;
 
-const Loader = ({dashboard}) => {
+const Loader = ({ dashboard }) => {
 
   useEffect(() => {
-    if(dashboard === true) handleCleanCaches();
+    if (dashboard === true) handleCleanCaches();
   })
 
   const handleCleanCaches = async () => {
     const idToken = localStorage.getItem('idToken');
     const savedVersion = localStorage.getItem('version');
+    let madeRequisition = false;
 
     try {
-      const response = await axios({
-        method: 'get',
-        url: process.env.REACT_APP_VERSION_ENDPOINT,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `${idToken}`,
-        },
-      })
-
-      const dataResponse = response?.data.Items[0]?.version;
-      const version = !!dataResponse ? dataResponse : 0;
-
-      if (savedVersion < version) {
-        // clean caches
-        if ('caches' in window) {
-          caches.keys().then((names) => {
-            // Delete all the cache files
-            names.forEach(name => {
-              caches.delete(name);
-            })
-          });
+      if (madeRequisition === false) {
+        const response = await axios({
+          method: 'get',
+          url: process.env.REACT_APP_VERSION_ENDPOINT,
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${idToken}`,
+          },
+        })
+        
+        const dataResponse = response?.data.Items[0]?.version;
+        const version = !!dataResponse ? dataResponse : 0;
+        
+        madeRequisition = !!dataResponse && true;
+        
+        if (savedVersion < version) {
+          // clean caches
+          if ('caches' in window) {
+            caches.keys().then((names) => {
+              // Delete all the cache files
+              names.forEach(name => {
+                caches.delete(name);
+              })
+            });
+          }
+          localStorage.setItem('version', version)
         }
-        localStorage.setItem('version', version)
       }
+
     } catch (error) {
       console.log(error);
     }

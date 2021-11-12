@@ -86,6 +86,7 @@ const Trails = (props) => {
       setIsModalAppCompleted(true);
     }
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
   const handleActivities = (trail) => {
