@@ -18,7 +18,7 @@ Amplify.configure({
 		region: process.env.REACT_APP_COGNITO_REGION,
 
 		oauth: {
-			domain: "almanaque-miguel-burnier-dev.auth.us-east-1.amazoncognito.com",
+			domain: process.env.REACT_APP_DOMAIN,
 			redirectSignIn: process.env.REACT_APP_REDIRECT_SIGNIN,
 			redirectSignOut: process.env.REACT_APP_REDIRECT_SIGNOUT,
 			responseType: "token"
