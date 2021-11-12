@@ -71,8 +71,6 @@ const Text = styled.h1`
   font-size: 1rem;
   font-weight: 900;
   color: #373737;
-  text-align: center;
-  padding-top: 4rem;
 `;
 
 const Trunk = (props) => {
