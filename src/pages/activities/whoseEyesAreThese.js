@@ -156,7 +156,6 @@ const WhoseEyesAreThese = ({ useActivitie, registerAction, actionsBook }) => {
         />
         <ContentImageText
           image={`data:image/jpeg;base64,${activitie.imageBase64}`}
-          title={activitie?.question}
           isModal={isModalAnswerOption}
         />
         <Button

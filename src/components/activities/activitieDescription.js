@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
-
-
+//Styled
 const Container = styled.div`
   width: 80%;
   height: 65%;
@@ -48,7 +47,6 @@ const Img = styled.img`
 `;
 
 const Title = styled.h1`
-  visibility:  ${props=>props.check ? "visible" : "hidden" };
   padding: 1rem 0 44px;
   color: #373737;
   font-size: 1em;
@@ -66,22 +64,12 @@ const Text = styled.p`
 `;
 
 const ContentImageText = ({ isModal, image, title, info }) => {
-  const [check, setCheck] = useState(true) 
-  useEffect(()=>{
-    handleCheckTitle(title)
-  },[title])
-  const handleCheckTitle = () => {
-    if (title === 'De quem são esses olhos?')
-    setCheck(false)
-    else setCheck(true)
-  }
-
   return (
     <Container isModal={isModal}>
       <ImgBox>
         <Img src={image} alt={"imagem da atividade"}  />
       </ImgBox>
-      <Title check={check}>{title}</Title>
+      {title && <Title>{title}</Title>}
       {info && !isModal && <Text>{info}</Text>}
     </Container>
   )
