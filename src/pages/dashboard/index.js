@@ -130,14 +130,6 @@ const Dashboard = (props) => {
     if (hasTrails && hasThunk) {
       setIsLoading(false);
     }
-    // else {
-    // if(isLoading === false) {
-    // const timer = setTimeout(() => {
-    //  setIsLoading(false)
-    // }, 2000);
-    // return () => clearTimeout(timer);
-    //}
-    // }
   }, [trails, thunks]);
 
   const handleClick = (route) => {
