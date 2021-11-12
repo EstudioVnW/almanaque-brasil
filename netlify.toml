@@ -4,21 +4,25 @@
   # Default build command.
   command = "CI=false yarn build"
 
-[context.main]
+[context.main-deploy]
   publish = "build/"
   command = "CI=false yarn build"
 
-[context.main.environment]
+[context.main-deploy.environment]
   NODE_ENV = "main"
   AMBIENT = "main"
-  REACT_APP_ACTIONS_BOOK_ENDPOINT = "https://ppy698remi.execute-api.us-east-1.amazonaws.com/prod/actions"
-  REACT_APP_COGNITO_USER_POOL_ID = "us-east-1_HAyFHvQlT"
-  REACT_APP_COGNITO_WEB_CLIENT_ID = "3u0sfeumo8vt6iulgvbfqmv8mc"
+  REACT_APP_COGNITO_USER_POOL_ID="us-east-1_502Jtv2g7"
+  REACT_APP_COGNITO_WEB_CLIENT_ID="3729955vpj5n9pb78b02a4662q"
   REACT_APP_COGNITO_REGION="us-east-1"
-  REACT_APP_TRAILS_ENDPOINT = "https://ppy698remi.execute-api.us-east-1.amazonaws.com/prod/trails"
-  REACT_APP_TRUNK_ENDPOINT="https://ppy698remi.execute-api.us-east-1.amazonaws.com/prod/chest"
-  REACT_APP_USER_STATS="https://ppy698remi.execute-api.us-east-1.amazonaws.com/prod/stats"
+  REACT_APP_ACTIONS_BOOK_ENDPOINT="https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/actions"
+  REACT_APP_TRAILS_ENDPOINT="https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/trails"
+  REACT_APP_TRUNK_ENDPOINT="https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/chest"
+  REACT_APP_IMAGES_ENDPOINT="https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/images"
+  REACT_APP_VERSION_ENDPOINT="https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/version"
   REACT_APP_WELCOME_MODAL_TRUNK_CONTENT_TITLE="Elifas Andreato"
+  REACT_APP_DOMAIN="almanaque-miguel-burnier-prod.auth.us-east-1.amazoncognito.com"
+  REACT_APP_REDIRECT_SIGNIN="https://almanaque.app/dashboard"
+  REACT_APP_REDIRECT_SIGNOUT="https://almanaque.app/"
 
 # Development context:
 [context.development]
@@ -35,9 +39,6 @@
   REACT_APP_ACTIONS_BOOK_ENDPOINT="https://5ltaa6klie.execute-api.us-east-1.amazonaws.com/dev/actions"
   REACT_APP_TRUNK_ENDPOINT="https://5ltaa6klie.execute-api.us-east-1.amazonaws.com/dev/chest"
   REACT_APP_WELCOME_MODAL_TRUNK_CONTENT_TITLE="Elifas Andreato"
-  REACT_APP_DOMAIN="almanaque-miguel-burnier-dev.auth.us-east-1.amazoncognito.com"
-  REACT_APP_REDIRECT_SIGNIN="https://development.almanaque.app/dashboard"
-  REACT_APP_REDIRECT_SIGNOUT="https://development.almanaque.app/dashboard"
 
 # Deploy Preview context: all deploys generated from a pull/merge request will
 # inherit these settings.
@@ -46,119 +47,17 @@
   command = "CI=false yarn build"
 
 [context.deploy-preview.environment]
-  NODE_ENV = "development"
-  AMBIENT = "development"
-  REACT_APP_COGNITO_USER_POOL_ID="us-east-1_cqXwEPWQV"
-  REACT_APP_COGNITO_WEB_CLIENT_ID="3o2tf27sl7md9mming6kjecr2i"
-  REACT_APP_COGNITO_REGION="us-east-1"
-  REACT_APP_TRAILS_ENDPOINT="https://5ltaa6klie.execute-api.us-east-1.amazonaws.com/dev/trails"
-  REACT_APP_ACTIONS_BOOK_ENDPOINT="https://5ltaa6klie.execute-api.us-east-1.amazonaws.com/dev/actions"
-  REACT_APP_TRUNK_ENDPOINT="https://5ltaa6klie.execute-api.us-east-1.amazonaws.com/dev/chest"
-  REACT_APP_WELCOME_MODAL_TRUNK_CONTENT_TITLE="Elifas Andreato"
-  REACT_APP_DOMAIN="almanaque-miguel-burnier-dev.auth.us-east-1.amazoncognito.com"
-  REACT_APP_REDIRECT_SIGNIN="https://development.almanaque.app/dashboard"
-  REACT_APP_REDIRECT_SIGNOUT="https://development.almanaque.app/dashboard"
-
-# Branch Deploy context: all deploys that are not from a pull/merge request or
-# from the Production branch will inherit these settings.
-#[context.branch-deploy]
-  #command = "echo branch"
-#[context.branch-deploy.environment]
-  #NODE_ENV = "development"
-
-# Specific branch context: all deploys from this specific branch will inherit
-# these settings.
-#[context.staging] # “staging” is a branch name
-  #command = "echo 'staging'"
-  #base = "staging"
-
-# For contexts of branches with special characters, enclose the branch name
-# with quotes.
-#[context."feat/branch"]
-  #command = "echo 'special branch'"
-  #base = "branch"
-
-# Redirects and headers are GLOBAL for all builds – they do not get scoped to
-# contexts no matter where you define them in the file.
-# For context-specific rules, use _headers or _redirects files, which are
-# PER-DEPLOY.
-
-# A basic redirect rule
-#[[redirects]]
-  #from = "/*"
-  #to = "/blog/:splat"
-
-# A redirect rule with many of the supported properties
-#[[redirects]]
-  #from = "/old-path"
-  #to = "/new-path"
-
-  # The default HTTP status code is 301, but you can define a different one.
-  #status = 302
-
-  # By default, redirects won’t be applied if there’s a file with the same
-  # path as the one defined in the `from` property. Setting `force` to `true`
-  # will make the redirect rule take precedence over any existing files.
-  #force = true
-
-  # Redirect from /old-path?id=123 to /new-path. Each combination of query
-  # params needs to be defined in a separate [[redirects]] block.
-  # More information at https://docs.netlify.com/routing/redirects/redirect-options/#query-parameters
-  #query = {id = ":id"}
-
-  # Redirect based on conditions including browser language, geolocation, 
-  # identity role, and/or cookie presence.
-  #conditions = {Language = ["en"], Country = ["US"]}
-
-  # Sign each request with a value defined in an environment variable
-  #signed = "API_SIGNATURE_TOKEN"
-
-  # You can also define custom headers within your redirects blocks.
-  #[redirects.headers]
-    #X-From = "Netlify"
-    #X-Api-Key = "some-api-key-string"
-
-# Role-based redirects do not have a “to” property.
-#[[redirects]]
-  #from = "/gated-path"
-  #status = 200
-  #conditions = {Role = ["admin"]}
-  #force = true
-
-# The following redirect is intended for use with most SPAs that handle
-# routing internally.
-#[[redirects]]
-  #from = "/*"
-  #to = "/index.html"
-  #status = 200
-
-#[[headers]]
-  # Define which paths this specific [[headers]] block will cover.
-  #for = "/*"
-
-  #[headers.values]
-    #X-Frame-Options = "DENY"
-    #X-XSS-Protection = "1; mode=block"
-    #Content-Security-Policy = "frame-ancestors https://www.facebook.com"
-
-    # Multi-value headers are expressed with multi-line strings.
-	#cache-control = '''
-	#max-age=0,
-	#no-cache,
-	#no-store,
-	#must-revalidate'''
-
-    # Basic-Auth allows you to password protect your whole site.
-    # This feature may not be available on all plans.
-    #Basic-Auth = "someuser:somepassword anotheruser:anotherpassword"
-
-#[functions]
-  # Directory with serverless functions, including background functions,
-  # to deploy. This is relative to the base directory if one has been set, 
-  # or the root directory if a base hasn’t been set.
-  #directory = "functions/"
-
-# An Edge Handler declaration
-#[[edge_handlers]]
-  #path = "/*"
-  #handler = "filterRequests"
+  NODE_ENV = "main"
+  AMBIENT = "main"
+  REACT_APP_COGNITO_USER_POOL_ID = "us-east-1_502Jtv2g7"
+  REACT_APP_COGNITO_WEB_CLIENT_ID = "3729955vpj5n9pb78b02a4662q"
+  REACT_APP_COGNITO_REGION = "us-east-1"
+  REACT_APP_ACTIONS_BOOK_ENDPOINT = "https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/actions"
+  REACT_APP_TRAILS_ENDPOINT = "https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/trails"
+  REACT_APP_TRUNK_ENDPOINT = "https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/chest"
+  REACT_APP_IMAGES_ENDPOINT = "https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/images"
+  REACT_APP_VERSION_ENDPOINT = "https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/version"
+  REACT_APP_WELCOME_MODAL_TRUNK_CONTENT_TITLE = "Elifas Andreato"
+  REACT_APP_DOMAIN = "almanaque-miguel-burnier-prod.auth.us-east-1.amazoncognito.com"
+  REACT_APP_REDIRECT_SIGNIN = "https://almanaque.app/dashboard"
+  REACT_APP_REDIRECT_SIGNOUT = "https://almanaque.app/"

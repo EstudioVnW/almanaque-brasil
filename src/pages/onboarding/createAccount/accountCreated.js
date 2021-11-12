@@ -99,6 +99,7 @@ const AccountCreated = () => {
   async function resendConfirmationCode() {
     try {
       await Auth.resendSignUp(email);
+      setIsResend(true);
     } catch (err) {
       if(err.message === "Username/client id combination not found") {
         setIsError({isError: true, msg: 'Combinação de nome de usuário do cliente não encontrada.'});

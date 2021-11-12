@@ -47,7 +47,7 @@ export function trailState(trailId, actionsBook) {
       }
     })
 
-    if(trailsCompleted === 10) {
+    if(trailsCompleted >= 10) {
       return {
         trailId,
         state: 'done'

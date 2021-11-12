@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 //Components
 import Form from '../../../components/form'
 import Header from '../../../components/header';
-import SplashAlmanaque from '../../../components/splash/indexLoader'
+import Loader from '../../../components/loader';
 
 //Redux
 import { signIn } from '../../../dataflow/modules/signIn-modules';
@@ -119,7 +119,7 @@ const Login = (props) => {
 
   const renderScreen = () => {
     if (isLoading){
-      return <SplashAlmanaque />
+      return <Loader />
     }
     return <Container>
       <Header

@@ -113,8 +113,7 @@ const Activities = (props) => {
           : <Title>Carregando</Title>
       }
 
-      {/* {!activities.length && <ModalErro />}
-      {console.log(!activities.length)} */}
+      {/*{!activities.length && <ModalErro />} */}
     </Container>
   );
 }

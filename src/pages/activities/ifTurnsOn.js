@@ -360,13 +360,10 @@ function IfTurnsOn({ useActivitie, registerAction, actionsBook, history }) {
         setChances(chances - 1);
       }
     } else {
-      console.log('não pode pontuar');
       if (isCorrect()) {
-        console.log('não pode pontuar, resposta correta');
         setIsCorrectAnswer(true);
         setIsModalWithoutScore(true);
       } else {
-        console.log('não pode pontuar, resposta errada');
         setIsModalWithoutScore(false);
       }
     }

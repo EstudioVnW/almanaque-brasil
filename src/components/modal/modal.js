@@ -23,6 +23,8 @@ export default function Modal({
   subtitle,
   bottom,
   margin,
+  width,
+  isIcon,
   color,
   data,
   background,
@@ -34,7 +36,8 @@ export default function Modal({
   font,
   helpScreen,
   balloonColor,
-  isError
+  isError,
+  btnHeight
 }) {
   const renderElifas = () => {
     switch (elifas) {
@@ -82,11 +85,13 @@ export default function Modal({
                 : data.map(item => 
                 <S.Text
                   margin={margin}
+                  isIcon={isIcon}
                   isError={isError}
                   isTip={isTip}
                   isWelcome={isWelcome}
                   isScore={isScore}
                   helpScreen={helpScreen}
+                  width={width}
                 >{item}</S.Text>)
               }
             </S.Scroll>
@@ -94,6 +99,7 @@ export default function Modal({
 
           {!isError &&
             <CloseBtn
+              height={btnHeight}
               handleCloseTutorial={handleCloseTutorial}
               handleModalTip={handleModalTip}
               handleClick={handleClick}

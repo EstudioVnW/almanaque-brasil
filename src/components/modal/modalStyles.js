@@ -112,7 +112,7 @@ export const Text = styled.li`
   display: flex;
   align-items: center;
   font-size: ${props => props.helpScreen ? '1.25rem' : '1rem'};
-  width: ${props => !props.isError && '92%'};
+  width: ${props => props.width && '100%' || !props.isError && '92%'};
   margin: ${props => props.margin || '.5rem 0 1.5rem'};
   font-weight: ${props => props.helpScreen  && '900'};
   color: #373737;
@@ -132,6 +132,10 @@ export const Text = styled.li`
     left: -2.9rem;
     font-size: 2.15em;
     font-weight: 900;
+  }
+
+  img {
+    width: ${props => props.isIcon && '3.125rem'};
   }
   
   @media (max-width: 425px) {
