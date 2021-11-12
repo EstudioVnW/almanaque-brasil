@@ -102,8 +102,7 @@ const Loader = ({ dashboard }) => {
       if (madeRequisition === false) {
         const response = await axios({
           method: 'get',
-          // url: process.env.REACT_APP_VERSION_ENDPOINT,
-          url: 'https://5ltaa6klie.execute-api.us-east-1.amazonaws.com/dev/version',
+          url: process.env.REACT_APP_VERSION_ENDPOINT,
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `${idToken}`,
