@@ -23,11 +23,11 @@
   REACT_APP_REDIRECT_SIGNOUT = "https://almanaque.app/"
 
 # Development context:
-[context.development-deploy]
+[context.development]
   publish = "build/"
   command = "CI=false yarn build"
 
-[context.development-deploy.environment]
+[context.development.environment]
   NODE_ENV = "development"
   AMBIENT = "development"
   REACT_APP_COGNITO_USER_POOL_ID="us-east-1_cqXwEPWQV"

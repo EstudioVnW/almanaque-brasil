@@ -160,7 +160,6 @@ const Home = (props) => {
   useEffect(() => {
     if ('caches' in window) {
       caches.keys().then((names) => {
-        console.log('clean cache')
         // Delete all the cache files
         names.forEach(name => {
           caches.delete(name);
@@ -171,7 +170,6 @@ const Home = (props) => {
 
   useEffect(() => {
     Auth.currentAuthenticatedUser().then(user => {
-      console.log("USER", user)
       const idToken = user.signInUserSession.idToken.jwtToken;
       props.signIn(user.attributes)
       localStorage.setItem('idToken', idToken)
