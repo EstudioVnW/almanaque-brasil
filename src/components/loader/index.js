@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import axios from 'axios';
+import packageJson from '../../../package.json';
 
 //Image
 import home from '../../images/dialogBox/dialogBoxLittle.svg';
@@ -91,43 +91,29 @@ const Loader = ({ dashboard }) => {
 
   useEffect(() => {
     if (dashboard === true) handleCleanCaches();
-  })
+  });
 
   const handleCleanCaches = async () => {
-    const idToken = localStorage.getItem('idToken');
-    const savedVersion = localStorage.getItem('version');
+    const getVersionLocalStorage = localStorage.getItem('version');
+    const getVersionPackage = packageJson.version;
     let madeRequisition = false;
 
     try {
-      if (madeRequisition === false) {
-        const response = await axios({
-          method: 'get',
-          url: process.env.REACT_APP_VERSION_ENDPOINT,
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `${idToken}`,
-          },
-        })
-        
-        const dataResponse = response?.data.Items[0]?.version;
-        const version = !!dataResponse ? dataResponse : 0;
-        
-        madeRequisition = !!dataResponse && true;
-        
-        if (savedVersion < version) {
-          // clean caches
-          if ('caches' in window) {
-            caches.keys().then((names) => {
-              // Delete all the cache files
-              names.forEach(name => {
-                caches.delete(name);
-              })
-            });
-          }
-          localStorage.setItem('version', version)
+      if (getVersionLocalStorage != getVersionPackage && !madeRequisition) {
+        // clean caches
+        if ('caches' in window) {
+          console.log('clean caches');
+          caches.keys().then((names) => {
+            // Delete all the cache files
+            names.forEach(name => {
+              caches.delete(name);
+            })
+          });
+          localStorage.setItem('version', getVersionPackage);
+          window.location.reload(true);
         }
+        madeRequisition = true;
       }
-
     } catch (error) {
       console.log(error);
     }
