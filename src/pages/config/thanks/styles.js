@@ -13,32 +13,29 @@ export const Container = styled.div`
 
 export const Subtitle = styled.p`
   color: #373737;
-  font-size: 14px;
-  line-height: 21px;
-  padding: 5rem 0 4rem 0;
-`;
-export const Box = styled.div`
+  font-size: 1.02em;
+  line-height: 1.6;
+  margin: 4rem auto 0;
   width: 90%;
-  height: 100%;
+`;
+
+export const Content = styled.div`
+  height: 100vh;
 `;
 
 export const BoxContainer = styled.div`
   display: flex;
-  justify-content: center;
-`;
-export const ContainerImage = styled.div`
-  display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-wrap: wrap;
-  width: 20rem;
 `;
+
 export const BoxImage = styled.div`
-  /* width: 5rem; */
-  width: 10rem;
-  height: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 1.5rem;
+  width: 50%;
+  height: 5rem;
 
   @media (max-width: 320px) {
     width: 9rem;
