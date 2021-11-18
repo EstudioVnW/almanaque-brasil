@@ -113,7 +113,7 @@ const Text = styled.p`
   margin-top: 1rem;
   width: 100%;
   max-width: 412px;
-  font-size: 1.1em;
+  font-size: .9em;
   color: #000000;
   text-align: left;
 
