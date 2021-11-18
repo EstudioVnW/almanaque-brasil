@@ -16,25 +16,23 @@ export default function Thanks() {
       <Header
         title='Agradecimentos'
       />
-      <S.Box>
+      <S.Content>
         <S.Subtitle>Agradecemos à comunidade de Miguel Burnier e a todas as pessoas que contribuíram para a realização do aplicativo Almanaque Miguel Burnier.</S.Subtitle>
         <S.BoxContainer>
-          <S.ContainerImage>
-            <S.BoxImage>
-              <img src={Instituto} alt='Logo Instituto' />
-            </S.BoxImage>
-            <S.BoxImage>
-              <img src={Holonomics} alt='Logo Holonomics' />
-            </S.BoxImage>
-            <S.BoxImage>
-              <img src={Gerdau} alt='Logo Gerdau' />
-            </S.BoxImage>
-            <S.BoxImage>
-              <img src={VaiNaWeb} alt='Logo Vai na Web' />
-            </S.BoxImage>
-          </S.ContainerImage>
+          <S.BoxImage>
+            <img src={Instituto} alt='Logo Instituto' />
+          </S.BoxImage>
+          <S.BoxImage>
+            <img src={Holonomics} alt='Logo Holonomics' />
+          </S.BoxImage>
+          <S.BoxImage>
+            <img src={Gerdau} alt='Logo Gerdau' />
+          </S.BoxImage>
+          <S.BoxImage>
+            <img src={VaiNaWeb} alt='Logo Vai na Web' />
+          </S.BoxImage>
         </S.BoxContainer>
-      </S.Box>
+      </S.Content>
     </S.Container>
   )
 }
