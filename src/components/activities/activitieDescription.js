@@ -4,15 +4,15 @@ import styled from 'styled-components'
 //Styled
 const Container = styled.div`
   width: 80%;
-  height: 65%;
+  height: 100%;
   margin: auto 0;
-  padding-top: ${props => props.isModal && '1rem'};
+  padding-top: ${props => props.isModal ? '1rem' : '2rem'};
   ${({ isModal }) => isModal && `flex: 1`};
   display: flex;
   align-items: center;
   flex-direction: column;
-
   overflow-y: auto; 
+
   ::-webkit-scrollbar {
     width: 4px;
     height: 10px;
@@ -31,12 +31,12 @@ const Container = styled.div`
 `;
 
 const ImgBox = styled.figure`
-  width: 100%;
+  width: 95%;
   height: 11rem;
   border-radius: 15px;
   overflow: hidden;
 
-  @media (max-width: 380px) { height: 8.5rem; }
+  @media (max-width: 380px) { height: 10rem; }
 `;
 
 const Img = styled.img`
@@ -47,11 +47,11 @@ const Img = styled.img`
 `;
 
 const Title = styled.h1`
-  padding: 1rem 0 44px;
+  padding: 1rem 0 2rem;
   color: #373737;
-  font-size: 1em;
-  font-weight: 800;
-  line-height: 1.3rem;
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1.4;
   text-align: center;
 
   @media (max-width: 425px) { padding-bottom: 1.3rem; }
@@ -60,7 +60,7 @@ const Title = styled.h1`
 const Text = styled.p`
   padding-bottom: 1rem;
   color: #373737;
-  font-size: .85rem;
+  font-size: 1rem;
 `;
 
 const ContentImageText = ({ isModal, image, title, info }) => {

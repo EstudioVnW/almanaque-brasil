@@ -25,10 +25,10 @@ const ContentAnswerOption = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80vw;
+  width: 95vw;
   max-width: 328px;
   height: 2.313rem;
-  font-size: .75rem;
+  font-size: .8rem;
   font-weight: 900;
   color: #373737;
   letter-spacing: .05rem;

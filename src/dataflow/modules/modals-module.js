@@ -18,12 +18,6 @@ export default function foo(state = initialState, action) {
           wasShowed: action.info.wasShowed
         }
       })
-      // return {
-      //   ...state,
-      //   [action.info.modal]: {
-      //     wasShowed: action.info.wasShowed
-      //   }
-      // }
     }
 
     case CLEAR_MODALS_STATE: {
@@ -32,11 +26,6 @@ export default function foo(state = initialState, action) {
           wasShowed: false
         }
       })
-      // return {
-      //   welcomeModal: {
-      //     wasShowed: false
-      //   }
-      // };
     }
     case SET_MODAL_IS_ACTIVITY_LIMIT: {
       return Object.assign({}, state, {

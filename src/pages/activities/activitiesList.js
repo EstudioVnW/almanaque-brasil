@@ -9,6 +9,7 @@ import Way from '../../components/trail/way';
 import ActivitiesCompleted from '../../components/modal/activitiesCompletedModal';
 import activityDesign from './activityDesign';
 import OfflineModal from "../../components/modal/offlineModal";
+import ModalNoActivity from "../../components/modal/errorModal";
 
 //Redux
 import { postActionsBook } from '../../dataflow/thunks/actionsBook-thunks';
@@ -54,6 +55,13 @@ const Stone = styled.div`
   }
 `;
 
+const TextLoading = styled.h1`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Trail = styled.div`
   display: flex;
   width: 375px;
@@ -78,7 +86,7 @@ const ActivitiesRow = styled.div`
 
 const Activities = (props) => {
   const [score, setScore] = useState(0);
-  const [activities, setActivities] = useState(null);
+  const [activities, setActivities] = useState([]);
   const [currentActivity, setCurrentActivity] = useState(null);
   const [activitiesProgress, setActivitiesProgress] = useState(undefined);
   const [isModalActivitiesCompleted, setIsModalActivitiesCompleted] = useState(undefined);
@@ -96,7 +104,7 @@ const Activities = (props) => {
 
     let canBeDone = true;
 
-    const activitiesStates = activities.map((activitie) => {
+    const activitiesStates = activities && activities.map((activitie) => {
       const isDoneActivitie = isDone(activitie.id);
       const activitieState = isDoneActivitie ? isDoneActivitie : defineState(canBeDone && !isDoneActivitie)
       if (!isDoneActivitie) canBeDone = false;
@@ -283,8 +291,8 @@ const Activities = (props) => {
 
   )
 
-  return (
-    <Container>
+  const screen = () => (
+    <>
       <Header
         title={activityName?.name}
         positionFixed
@@ -304,17 +312,23 @@ const Activities = (props) => {
             lineColor={activityName?.color}
           />
         }
-        {
-          activities && activities.length > 0
-            ? renderActivities()
-            : <h1>Carregando</h1>
-        }
+        
+        {renderActivities()}
       </Trail>
 
       {renderLogoStone()}
+    </>
+  )
+
+  return (
+    <Container>
+      {
+        activities && activities.length > 0 
+        ? screen() : <TextLoading>Carregando...</TextLoading>
+      }
       {isModalActivitiesCompleted && <ActivitiesCompleted score={score} history={props.history}/>}
       {props.isActivityLimit && <OfflineModal handleCloseModal={() => handleCloseModal()}/>}
-      
+      {!activities.length && <ModalNoActivity />}
     </Container>
   );
 }

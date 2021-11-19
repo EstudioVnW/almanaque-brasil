@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import axios from 'axios';
+import packageJson from '../../../package.json';
 
 //Image
 import home from '../../images/dialogBox/dialogBoxLittle.svg';
@@ -15,6 +15,7 @@ const AnimBall = keyframes`
 const Container = styled.div`
   position: relative;
   width: 100%;
+  max-width: 425px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -78,6 +79,7 @@ const BoxElifas = styled.div`
   width: 169px;
   height: 231px;
   position: relative;
+  right: 0;
   background-image: url(${elifas});
 `;
 
@@ -85,49 +87,37 @@ const BoxContainer = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
+
+  @media (max-width: 425px) { position: fixed; } //ajust ios
 `;
 
 const Loader = ({ dashboard }) => {
 
   useEffect(() => {
     if (dashboard === true) handleCleanCaches();
-  })
+  });
 
   const handleCleanCaches = async () => {
-    const idToken = localStorage.getItem('idToken');
-    const savedVersion = localStorage.getItem('version');
+    const getVersionLocalStorage = localStorage.getItem('version');
+    const getVersionPackage = packageJson.version;
     let madeRequisition = false;
 
     try {
-      if (madeRequisition === false) {
-        const response = await axios({
-          method: 'get',
-          url: process.env.REACT_APP_VERSION_ENDPOINT,
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `${idToken}`,
-          },
-        })
-        
-        const dataResponse = response?.data.Items[0]?.version;
-        const version = !!dataResponse ? dataResponse : 0;
-        
-        madeRequisition = !!dataResponse && true;
-        
-        if (savedVersion < version) {
-          // clean caches
-          if ('caches' in window) {
-            caches.keys().then((names) => {
-              // Delete all the cache files
-              names.forEach(name => {
-                caches.delete(name);
-              })
-            });
-          }
-          localStorage.setItem('version', version)
+      if (getVersionLocalStorage != getVersionPackage && !madeRequisition) {
+        // clean caches
+        if ('caches' in window) {
+          console.log('clean caches');
+          caches.keys().then((names) => {
+            // Delete all the cache files
+            names.forEach(name => {
+              caches.delete(name);
+            })
+          });
+          localStorage.setItem('version', getVersionPackage);
+          window.location.reload(true);
         }
+        madeRequisition = true;
       }
-
     } catch (error) {
       console.log(error);
     }

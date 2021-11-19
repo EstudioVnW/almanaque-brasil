@@ -10,8 +10,8 @@ export default function ActivitiesCompletedModal({ history, score }) {
   const content = {
     title: 'Parabéns!',
     text: [
-      'Você concluiu a trilha, e conquistou:',
-      `${score} pts`,
+      'Você concluiu a trilha, e conquistou :',
+      score,
       'vamos continuar nessa jornada de conhecimento?'
     ],
     button: 'Escolher outra trilha'
@@ -25,7 +25,10 @@ export default function ActivitiesCompletedModal({ history, score }) {
       background='#ababab45'
       handleClick={handleClick}
       btnContent={content.button}
+      margin='.5rem 0 .8rem'
       buttonBg='#ffd000'
+      font='1.5em'
+      elifas='ok'
       isScore={true}
     />
 	);

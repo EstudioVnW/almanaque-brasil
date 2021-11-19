@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 //Images
@@ -25,7 +25,20 @@ const Footer = styled.img`
   width: 100%;
 `;
 
-const SplashPresentation = (props) => {
+const SplashPresentation = () => {
+
+  useEffect(() => {
+    // clean caches
+    if ('caches' in window) {
+      caches.keys().then((names) => {
+        // Delete all the cache files
+        names.forEach(name => {
+          caches.delete(name);
+        })
+      });
+    }
+  }, [])
+
   return (
     <Container>
       <Logo src={almanaque} alt="Logo almanaque" />
