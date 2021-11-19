@@ -141,7 +141,6 @@ const AnswerOption = styled.button`
 
 const IconDelete = styled.img`
   margin: 2% 3% 2% 3%;
-  font-family: 
  
   @media (max-width: 360px) { margin: 2%; }
   @media (max-width: 320px) { margin: 2% 1% 3% 1%; }
