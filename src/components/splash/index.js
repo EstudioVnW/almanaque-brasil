@@ -28,19 +28,14 @@ const Footer = styled.img`
 const SplashPresentation = () => {
 
   useEffect(() => {
-    try {
-      // clean caches
-      if ('caches' in window) {
-        caches.keys().then((names) => {
-          // Delete all the cache files
-          names.forEach(name => {
-            console.log({name});
-            caches.delete(name);
-          })
-        });
-      }
-    } catch (error) {
-      console.log(error);
+    // clean caches
+    if ('caches' in window) {
+      caches.keys().then((names) => {
+        // Delete all the cache files
+        names.forEach(name => {
+          caches.delete(name);
+        })
+      });
     }
   }, [])
 
