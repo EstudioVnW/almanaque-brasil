@@ -110,6 +110,7 @@ const Word = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0% 10% 0% 10%;
+  min-width: 2.5rem;
   border-radius: 15px;
   color: #373737;
   font-size: 2rem;
