@@ -117,11 +117,18 @@ export const Text = styled.li`
   font-weight: ${props => props.helpScreen  && '900'};
   color: #373737;
   line-height: 1.45;
-  letter-spacing: ${props => props.isTip ? '.5px' : '1.2px'};
+  letter-spacing: ${props => props.isTip || props.isScore ? '.5px' : '1.2px'};
   counter-increment: count;
 
   &:nth-child(2) {
-    ${props => props.isScore && 'color: #373737; font: 900 1.5em Nunito,sans-serif; justify-content: center;'}
+    ${props => props.isScore && 'color: #373737; font: 900 2.5em Nunito,sans-serif; justify-content: center;'}
+
+    &:after {
+      ${props => props.isScore && "content: 'pts';"}
+      margin-left: 6px;
+      font-size: .6em;
+      font-weight: 800;
+    }
   }
 
   ${props => props.isTutorial && '&:last-child { margin-bottom: 1.2rem; }'};
@@ -140,7 +147,7 @@ export const Text = styled.li`
   
   @media (max-width: 425px) {
     padding: ${props => props.padding && '1.5rem 0 .4rem 0 '};
-    font-size: .95em;
+    font-size: .96em;
   }
 `;
 

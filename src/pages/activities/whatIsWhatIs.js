@@ -36,29 +36,37 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
-  padding-top: ${props => props.isModal && '2rem'};
-  flex: 1;
   display: flex;
   align-items: ${props => !props.isModal && 'center'};
+  flex: 1;
+  padding-top: ${props => props.isModal && '3rem'};
   z-index: 1;
+`;
+const Title = styled.h1`
+  position: relative;
+  margin: 0 auto;
+  width: 80%;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.4;
+  color: #373737;
+  text-align: center;
 
   span {
-    font-size: 2rem;
-    font-weight: 700;
+    position: absolute;
+    top: 5px;
+    left: -1.3rem;
+    font: 900 3rem Monospace, sans-serif;
     color: #36A39A;
     line-height: 0;
+    
     :last-child {
+      top: 1.5rem;
+      right: -1.3rem;
+      left: auto;
       padding-top: ${props => props.isModal ? '2.5rem' : '1rem'}
     }
   }
-`;
-const Title = styled.h1`
-  width: 20rem;
-  font-size: 1.5rem;
-  font-weight: 900;
-  line-height: 2rem;
-  color: #373737;
-  text-align: center;
   
   @media (max-width: 320px) { width: 18rem; }
 `;
@@ -133,6 +141,7 @@ const AnswerOption = styled.button`
 
 const IconDelete = styled.img`
   margin: 2% 3% 2% 3%;
+  font-family: 
  
   @media (max-width: 360px) { margin: 2%; }
   @media (max-width: 320px) { margin: 2% 1% 3% 1%; }
