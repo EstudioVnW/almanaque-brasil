@@ -79,18 +79,17 @@ const Scroll = styled.div`
   ::-webkit-scrollbar {
     width: 4px;
     height: 10px;
-    background: transparent;
   }
   ::-webkit-scrollbar-track {
     background: transparent;
     border-radius: 20px;
   }
   ::-webkit-scrollbar-thumb {
-    border-radius: 13px;
-    background: transparent;
+    background: #eee;
+    border-radius: 20px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: transparent;
+    background: #ccc;
   }
 `;
 
@@ -103,8 +102,9 @@ const Title = styled.h1`
 `;
 
 const TextName = styled.h1`
+  padding-top: 5px;
   font-size: 1.625rem;
-  color: #0D0D0D;
+  color: #373737;
   font-weight: 900;
   text-transform: capitalize;
 `;
@@ -113,7 +113,7 @@ const Text = styled.p`
   margin-top: 1rem;
   width: 100%;
   max-width: 412px;
-  font-size: .9em;
+  font-size: 1rem;
   color: #000000;
   text-align: left;
 
