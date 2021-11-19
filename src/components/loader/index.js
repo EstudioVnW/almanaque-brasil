@@ -15,6 +15,7 @@ const AnimBall = keyframes`
 const Container = styled.div`
   position: relative;
   width: 100%;
+  max-width: 425px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -78,6 +79,7 @@ const BoxElifas = styled.div`
   width: 169px;
   height: 231px;
   position: relative;
+  right: 0;
   background-image: url(${elifas});
 `;
 
@@ -85,6 +87,8 @@ const BoxContainer = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
+
+  @media (max-width: 425px) { position: fixed; } //ajust ios
 `;
 
 const Loader = ({ dashboard }) => {
