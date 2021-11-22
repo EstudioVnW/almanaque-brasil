@@ -8,7 +8,13 @@ const CloseBtn = styled.button`
   font: 900 1.6em 'Nunito';
   color: #373737;
   transform: scale(1,.82);
+  transition: .2s ease;
+  user-select: none;
   z-index: 111;
+
+  &:hover {
+    transform: scale(1.15,.95);
+  }
 `;
 
 export default function CloseModal({

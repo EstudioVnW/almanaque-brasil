@@ -42,11 +42,11 @@ export default function Modal({
   const renderElifas = () => {
     switch (elifas) {
       case 'guide':
-        return <S.ImgElifas isTutorial={isTutorial} isWelcome src={guideElifas} />
+        return <S.ImgElifas isTutorial={isTutorial} isWelcome src={guideElifas} alt="Personagem Elifas com mochila nas costas" />
       case 'ok':
-        return <S.ImgElifas isTutorial={isTutorial} src={okElifas} />
+        return <S.ImgElifas isTutorial={isTutorial} src={okElifas} alt="Personagem Elifas fazendo sinal de ok" />
       case 'tip':
-        return <S.ImgElifas isTutorial={isTutorial} src={tipElifas} />
+        return <S.ImgElifas isTutorial={isTutorial} src={tipElifas} alt="Personagem Elifas apontando para o texto" />
       default:
         break 
     }

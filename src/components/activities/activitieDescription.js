@@ -11,23 +11,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  overflow-y: auto; 
-
-  ::-webkit-scrollbar {
-    width: 4px;
-    height: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: transparent;
-    border-radius: 20px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: transparent;
-    border-radius: 13px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: transparent;
-  }
+  overflow-y: auto;
 `;
 
 const ImgBox = styled.figure`
@@ -36,7 +20,9 @@ const ImgBox = styled.figure`
   border-radius: 15px;
   overflow: hidden;
 
-  @media (max-width: 380px) { height: 10rem; }
+  @media (max-width: 425px) {
+    min-height: 9rem;
+  }
 `;
 
 const Img = styled.img`
@@ -59,8 +45,24 @@ const Title = styled.h1`
 
 const Text = styled.p`
   padding-bottom: 1rem;
-  color: #373737;
   font-size: 1rem;
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 20px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #eee;
+    border-radius: 20px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ccc;
+  }
 `;
 
 const ContentImageText = ({ isModal, image, title, info }) => {

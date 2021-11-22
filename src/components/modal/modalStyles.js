@@ -121,7 +121,7 @@ export const Text = styled.li`
   counter-increment: count;
 
   &:nth-child(2) {
-    ${props => props.isScore && 'color: #373737; font: 900 2.5em Nunito,sans-serif; justify-content: center;'}
+    ${props => props.isScore && 'font: 900 2.5em Nunito,sans-serif; justify-content: center;'}
 
     &:after {
       ${props => props.isScore && "content: 'pts';"}
@@ -131,7 +131,9 @@ export const Text = styled.li`
     }
   }
 
-  ${props => props.isTutorial && '&:last-child { margin-bottom: 1.2rem; }'};
+  &:last-child {
+    margin-bottom: ${props => props.isTutorial && '1.2rem;'};
+  }
 
   &:before {
     ${props => props.isTutorial && 'content: counter(count) "°";'}
@@ -147,7 +149,6 @@ export const Text = styled.li`
   
   @media (max-width: 425px) {
     padding: ${props => props.padding && '1.5rem 0 .4rem 0 '};
-    font-size: .96em;
   }
 `;
 
@@ -155,7 +156,7 @@ export const ImgElifas = styled.img`
   position: absolute;
   right: ${props => props.isWelcome ? '-11' : '0'}%;
   bottom: 0;
-  width: ${props => props.isWelcome ? '14' : '11'}rem;
+  width: ${props => props.isWelcome ? '14' : '10'}rem;
 
   @media (max-width: 425px) {
     right: ${props => props.isWelcome ? '-14%' : '0'};
