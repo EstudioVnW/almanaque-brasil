@@ -28,7 +28,7 @@ const RandomBox = styled.div`
   align-items: center;
   flex-direction: column;
   position: absolute;
-  bottom: 16vh;
+  bottom: 25vh;
   background: #F3F3F3;
 
   @media(min-width: 1024px) {bottom: 12vh}
@@ -106,7 +106,9 @@ const MsgError = styled.div`
 
 const Avatar = styled.img`
   position: relative;
-  right: -130px;
+  right: -120px;
+  bottom: -2rem;
+  width: 9rem;
 `;
 
 const ButtonsBox = styled.div`
