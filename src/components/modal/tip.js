@@ -8,9 +8,10 @@ export default function Tip({ text, handleModalTip }) {
       data={text}
       handleClick={handleModalTip}
       background='#70707075'
-      isTip={true}
+      bottom='18%'
       elifas='tip'
       noAbsolute
+      isTip
     />
   );
 }

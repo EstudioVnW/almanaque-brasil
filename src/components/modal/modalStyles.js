@@ -28,14 +28,14 @@ export const Content = styled.div`
 
 export const ContentInfo = styled.div`
   position: relative;
-  bottom: ${props => props.isTip && '18%'};
+  bottom: ${props => props.bottom};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
-  padding: ${props => props.isTutorial ? '1rem 1.1rem' : '1.5rem 1rem 1rem'};
-  width:  ${props => props.helpScreen ? '100%' : '91%'};
+  padding: ${props => props.padding || '1.5rem 1rem 1rem'};
+  width: 91%;
   min-height: ${props => props.isTip && '55vh'};
   letter-spacing: 1px;
   filter: ${props => !props.isError && 'drop-shadow(1px 4px 3px #999)'};
@@ -62,10 +62,22 @@ export const ContentInfo = styled.div`
   }
 `;
 
+export const Figure = styled.figure`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: ${props => props.backgroundImg};
+  background-repeat: no-repeat;
+  border-radius: ${props => props.isTutorial ? '30px' : '20px'};
+`;
+
 export const TutorialBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  z-index: 1;
 `;
 
 export const Title = styled.h2`
@@ -76,16 +88,23 @@ export const Title = styled.h2`
 `;
 
 export const Subtitle = styled.h1`
+  display: flex;
+  flex-direction: column;
   margin: .5rem 0 ${props => props.isTutorial ? '2.5rem' : '.7rem'};
   text-align: center;
   font-size: ${props => props.font || '1.25em'};
   line-height: ${props => !props.isResend && '1'};
   font-weight: ${props => props.fontWeight || '900'};
   color: ${props => props.color || '#373737'};
+
+  span {
+    padding-top: 8px;
+  }
 `;
 
 export const Scroll = styled.ol`
   padding-left: ${props => props.isTutorial ? '3.3rem' : '0'};
+  width: 100%;
   text-align: ${props => props.isError && 'center'};
   list-style: none;
   counter-reset: count;
@@ -110,15 +129,32 @@ export const Scroll = styled.ol`
 export const Text = styled.li`
   position: relative;
   display: flex;
+  flex-direction: ${props => props.isWrongAnswer && 'column'};
   align-items: center;
-  font-size: ${props => props.helpScreen ? '1.25rem' : '1rem'};
+  font-size: ${props => props.textSize || '1rem'};
   width: ${props => (props.width && '100%') || (!props.isError && '92%')};
   margin: ${props => props.margin || '.5rem 0 1.5rem'};
-  font-weight: ${props => props.helpScreen  && '900'};
   color: #373737;
   line-height: 1.45;
   letter-spacing: ${props => props.isTip || props.isScore ? '.5px' : '1.2px'};
   counter-increment: count;
+
+  &:before {
+    ${props => props.isTutorial && 'content: counter(count) "°";'}
+    position: absolute;
+    left: -2.9rem;
+    font-size: 2.15em;
+    font-weight: 900;
+  }
+
+  p {
+    display: flex;
+    flex-direction: column;
+  }
+
+  img {
+    width: ${props => props.isIcon && '3.125rem'};
+  }
 
   &:nth-child(2) {
     ${props => props.isScore && 'font: 900 2.5em Nunito,sans-serif; justify-content: center;'}
@@ -134,18 +170,6 @@ export const Text = styled.li`
   &:last-child {
     margin-bottom: ${props => props.isTutorial && '1.2rem;'};
   }
-
-  &:before {
-    ${props => props.isTutorial && 'content: counter(count) "°";'}
-    position: absolute;
-    left: -2.9rem;
-    font-size: 2.15em;
-    font-weight: 900;
-  }
-
-  img {
-    width: ${props => props.isIcon && '3.125rem'};
-  }
   
   @media (max-width: 425px) {
     padding: ${props => props.padding && '1.5rem 0 .4rem 0 '};
@@ -155,14 +179,14 @@ export const Text = styled.li`
 export const ImgElifas = styled.img`
   position: absolute;
   right: ${props => props.isWelcome ? '-11' : '0'}%;
-  bottom: 0;
-  width: ${props => props.isWelcome ? '14' : '10'}rem;
+  bottom: ${props => props.elifasPos || '0'};
+  width: ${props => props.elifasWidth || '10rem'};
 
   @media (max-width: 425px) {
     right: ${props => props.isWelcome ? '-14%' : '0'};
   }
   
-  @media (max-height: 600px) {
-    width: ${props => props.isWelcome ? '12' : '8.5'}rem;
+  @media (max-height: 580px) {
+    width: ${props => props.isWelcome ? '12' : '7.5'}rem;
   }
 `;
