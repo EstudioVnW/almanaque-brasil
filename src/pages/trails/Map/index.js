@@ -42,6 +42,8 @@ const MapBackground = styled.div`
     left: -.5rem;
     bottom: -1.5rem;
     transform: scale(.8,.8);
+    min-height: 100%;
+    height: -webkit-fill-available;
   }
 `;
 
