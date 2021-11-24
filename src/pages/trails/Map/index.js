@@ -31,15 +31,19 @@ const MapBackground = styled.div`
   height: -webkit-fill-available;
   
   @media (max-width: 400px) {
-    bottom: -.5rem;
+    height: auto;
+    min-height: auto;
+    bottom: 2rem;
     left: -1.5rem;
-    transform: scaleY(.9);
+    transform: scaleY(.75);
   }
   
   @media (max-width: 320px) {
     left: -.5rem;
     bottom: -1.5rem;
     transform: scale(.8,.8);
+    min-height: 100%;
+    height: -webkit-fill-available;
   }
 `;
 
