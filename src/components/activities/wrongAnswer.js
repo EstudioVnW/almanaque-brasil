@@ -258,7 +258,7 @@ function WrongAnswer({ chances, handleClick, handleShowAnswer, errorMessages }) 
       <Button
         margin={"0 0 20px 0"}
         buttonBg={"rgb(252, 208, 41)"}
-        boxShadow={"rgb(238 137 47) 0px 7px 0px"}
+        boxShadow={"#F08800 0px 7px 0px"}
         handleClick={handleActivity}
       >
         Continuar Trilha
