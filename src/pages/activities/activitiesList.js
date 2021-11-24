@@ -38,10 +38,27 @@ const mapDispatchToProps = dispatch => ({
 
 // Styles
 const Container = styled.div`
+  position: fixed;
   width: 100%;
-  height: 100%;
-  min-height: 100vh;
+  max-width: 425px;
+  height: 100vh;
   background-color: #FAFAFA;
+  overflow-y: auto;
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 20px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 13px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
 `;
 
 const Stone = styled.div`
@@ -51,7 +68,6 @@ const Stone = styled.div`
   
   img {
     width: ${props => props.width};
-
   }
 `;
 
@@ -62,12 +78,17 @@ const TextLoading = styled.h1`
   align-items: center;
 `;
 
+const ContentAct = styled.div`
+  display: block;
+`;
+
 const Trail = styled.div`
   display: flex;
   width: 375px;
   background-color: transparent;
   overflow: hidden;
   width: 100%;
+  height: 100%;
   align-items: center;
   flex-direction: column;
   box-sizing: border-box;
@@ -300,6 +321,7 @@ const Activities = (props) => {
         boxShadow
         goBack={() => { props.history.push('/trilhas') }}
       />
+<ContentAct>
 
       {renderStone()}
 
@@ -317,6 +339,8 @@ const Activities = (props) => {
       </Trail>
 
       {renderLogoStone()}
+</ContentAct>
+
     </>
   )
 
