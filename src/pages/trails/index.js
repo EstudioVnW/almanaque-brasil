@@ -65,6 +65,7 @@ const Trails = (props) => {
   const [isModalTrailCompleted, setIsModalTrailCompleted] = useState({isModal: undefined, trailId: null});
   const [trailsState, setTrailsState] = useState([]);
   const [qtdTrailComplete, setQtdTrailComplete] = useState(0);
+  const [errorLoadingTrack, setErrorLoadingTrack] = useState(undefined);
 
   useEffect(() => {
     const listActionsBook = [...props.actionsBook.synced, ...props.actionsBook.pendingSync];
@@ -88,6 +89,14 @@ const Trails = (props) => {
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+  useEffect(() => {
+    let setError = !trails.length && setTimeout(() => setErrorLoadingTrack(true), 2000);
+
+    return () => {
+      clearTimeout(setError);
+    };
+  }, []);
 
   const handleActivities = (trail) => {
     props.history.push({pathname: '/atividades'});
@@ -132,7 +141,7 @@ const Trails = (props) => {
 
       {isModalTrailCompleted.isModal && <TrailCompleted handleClickModal={handleClickModal} handleCloseModal={handleCloseModalCompleteTrail}/>}
       {isModalAppCompleted && <AppCompletedModal handleCloseModal={handleCloseModal} /> }
-      {!trails.length && <ErrorModal />}
+      {errorLoadingTrack && <ErrorModal />}
     </Box>
   );
 }

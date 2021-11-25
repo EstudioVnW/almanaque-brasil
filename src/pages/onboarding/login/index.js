@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 //Components
 import Form from '../../../components/form'
 import Header from '../../../components/header';
-import Loader from '../../../components/loader';
 
 //Redux
 import { signIn } from '../../../dataflow/modules/signIn-modules';
@@ -90,7 +89,7 @@ const Login = (props) => {
       props.getActionsBook()
       setIsLoading(true)
       handleLoading()
-      // props.history.push('/dashboard')
+      props.history.push('/dashboard')
     } catch (error) {
       console.log('error', error);
       if (error.code === "NotAuthorizedException") setError("O e-mail ou senha inseridos estão incorretos.");
@@ -118,9 +117,6 @@ const Login = (props) => {
   }
 
   const renderScreen = () => {
-    if (isLoading){
-      return <Loader />
-    }
     return <Container>
       <Header
         title="Login"
@@ -137,6 +133,7 @@ const Login = (props) => {
         handleViewPassword={handleViewPassword}
         isError={error}
         pass
+        isLoading={isLoading}
       />
       <ButtonSpacer>
         <ResetButton onClick={resetPassword}>Esqueceu a senha?</ResetButton>

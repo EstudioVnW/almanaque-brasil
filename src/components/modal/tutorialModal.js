@@ -12,10 +12,11 @@ export default function TutorialModal({ screen, handleCloseTutorial, btnContent 
       title="Tutorial"
       subtitle={subtitle}
       data={data}
+      padding='1rem 1.1rem'
       btnContent={btnContent}
-      isTutorial={true}
-      elifas='tip'
       handleClick={handleCloseTutorial}
+      elifas='tip'
+      isTutorial
     />
   );
 }

@@ -42,6 +42,7 @@ const Content = styled.div`
   padding-top: ${props => props.isModal && '3rem'};
   z-index: 1;
 `;
+
 const Title = styled.h1`
   position: relative;
   margin: 0 auto;
@@ -68,7 +69,10 @@ const Title = styled.h1`
     }
   }
   
-  @media (max-width: 320px) { width: 18rem; }
+  @media (max-width: 320px) {
+    width: 17rem;
+    font-size: 1.3rem;
+  }
 `;
 
 const IconLeaves = styled.img`

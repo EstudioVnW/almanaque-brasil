@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import packageJson from '../../../package.json';
+import { connect } from 'react-redux';
 
 //Image
 import home from '../../images/dialogBox/dialogBoxLittle.svg';
@@ -91,10 +92,10 @@ const BoxContainer = styled.div`
   @media (max-width: 425px) { position: fixed; } //ajust ios
 `;
 
-const Loader = ({ dashboard }) => {
+const Loader = (props) => {
 
   useEffect(() => {
-    if (dashboard === true) handleCleanCaches();
+   handleCleanCaches();
   });
 
   const handleCleanCaches = async () => {
@@ -119,7 +120,7 @@ const Loader = ({ dashboard }) => {
         madeRequisition = true;
       }
     } catch (error) {
-      console.log(error);
+      console.log('error loader', error);
     }
   }
 

@@ -20,6 +20,6 @@ export const getDataThunk = () => async (dispatch) => {
     dispatch(saveThunk(response.data.Items));
   }
   catch (err) {
-    console.log('err', err);
+    console.log('err get thunk', err);
   }
 }

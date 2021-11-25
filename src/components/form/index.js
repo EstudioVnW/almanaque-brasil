@@ -72,7 +72,8 @@ const Form = ({
   attention,
   emailValue,
   passValue,
-  handleLogin
+  handleLogin,
+  isLoading,
 }) => {
 
   return login
@@ -100,7 +101,7 @@ const Form = ({
         />
         <Error>{isError}</Error>
         <ButtonSpacer>
-          <Button>Entrar</Button>
+          <Button isLoading={isLoading}>Entrar</Button>
         </ButtonSpacer>
       </Container>
     )

@@ -11,8 +11,8 @@ const Container = styled.div`
   bottom: 0;
   width: 100%;
   max-width: 26.5625rem;
-  height: 100vh;
   background: #fff;
+  height: -webkit-fill-available;
   z-index: 2;
   overflow-y: auto;
 
@@ -52,7 +52,7 @@ const MessageBox = styled.div`
 
 const Img = styled.img`
   width: 100%;
-  min-height: 245px;
+  min-height: 400px;
   max-width: 500px;
   object-fit: fill;
 
