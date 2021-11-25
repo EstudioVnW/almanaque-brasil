@@ -175,6 +175,7 @@ function WrongAnswer({ chances, handleClick, handleShowAnswer, errorMessages }) 
           elifasBottom='8.5rem'
           elifasWidth='9rem'
           isWrongAnswer
+          repeat={chances === 1}
         />
       </ContentDialogBox>
     </>

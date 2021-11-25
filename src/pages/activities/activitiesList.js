@@ -111,6 +111,7 @@ const Activities = (props) => {
   const [currentActivity, setCurrentActivity] = useState(null);
   const [activitiesProgress, setActivitiesProgress] = useState(undefined);
   const [isModalActivitiesCompleted, setIsModalActivitiesCompleted] = useState(undefined);
+  const [errorLoadingTrack, setErrorLoadingTrack] = useState(undefined);
 
   const activityName = activityDesign && activityDesign[currentActivity];
 
@@ -134,13 +135,13 @@ const Activities = (props) => {
 
     setActivitiesProgress(activitiesStates);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activities]);
 
   useEffect(() => {
     const trail = props.selectedTrails;
     const allActivities = props?.activities?.data[trail]?.activities;
-   
+
     setActivities(allActivities);
   }, [props.selectedTrails, props.activities.data]);
 
@@ -148,7 +149,7 @@ const Activities = (props) => {
     const lastActivitiesProgress = activitiesProgress && activitiesProgress[activitiesProgress.length - 1];
     const lastActivityDone = lastActivitiesProgress?.state === 'right' || lastActivitiesProgress?.state === 'wrong';
 
-    if(lastActivityDone) { 
+    if (lastActivityDone) {
       const idLastActivitiesProgress = lastActivitiesProgress.id
       let lastActivity = props.selectedActivity === idLastActivitiesProgress;
 
@@ -159,7 +160,7 @@ const Activities = (props) => {
 
   useEffect(() => {
     const listActionsBook = [...props.actionsBook.synced, ...props.actionsBook.pendingSync];
-    
+
     let totalScore;
 
     if (listActionsBook.length > 0) {
@@ -167,8 +168,8 @@ const Activities = (props) => {
       let trailId = listActionsBook[listActionsBook.length - 1]?.trailId;
 
       const points = pendingList
-      .filter(action => action.trailId === trailId)
-      .map(action => action.score);
+        .filter(action => action.trailId === trailId)
+        .map(action => action.score);
 
       if (points.length > 1) {
         totalScore = points.length > 0 && points.reduce((prev, cur) => prev + cur);
@@ -183,9 +184,9 @@ const Activities = (props) => {
       setScore(totalScore);
     }
   }, [props.actionsBook]);
-  
+
   useEffect(() => {
-    if(props.actionsBook.pendingSync.length > 0) {
+    if (props.actionsBook.pendingSync.length > 0) {
       props.postActionsBook(props.actionsBook);
     }
   }, [props]);
@@ -194,7 +195,15 @@ const Activities = (props) => {
     const useCurrentActivity = props?.activities?.data[props.selectedTrails]?.name;
 
     setCurrentActivity(useCurrentActivity);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    let setError = !props?.activities?.data.length ? setTimeout(() => setErrorLoadingTrack(true), 2000) : setErrorLoadingTrack(false);
+
+    return () => {
+      clearTimeout(setError);
+    };
   }, []);
 
   const handlerNextActivitie = (index, activityId) => {
@@ -293,7 +302,7 @@ const Activities = (props) => {
     else return "bloqued"
   }
 
-  const renderStone = () =>  (
+  const renderStone = () => (
     <Stone width='12rem'>
       <img
         src={activityName?.stone.stone}
@@ -321,38 +330,36 @@ const Activities = (props) => {
         boxShadow
         goBack={() => { props.history.push('/trilhas') }}
       />
-<ContentAct>
+      <ContentAct>
+        {renderStone()}
 
-      {renderStone()}
+        <Trail>
+          {activities && activityName &&
+            <Way
+              progress={activitiesProgress}
+              backgroundDecorations={backgroundDecorations}
+              linesQuantity={activities.length - 1}
+              lineColor={activityName?.color}
+            />
+          }
 
-      <Trail>
-        {activities && activityName &&
-          <Way
-            progress={activitiesProgress}
-            backgroundDecorations={backgroundDecorations}
-            linesQuantity={activities.length - 1}
-            lineColor={activityName?.color}
-          />
-        }
-        
-        {renderActivities()}
-      </Trail>
+          {renderActivities()}
+        </Trail>
 
-      {renderLogoStone()}
-</ContentAct>
-
+        {renderLogoStone()}
+      </ContentAct>
     </>
   )
 
   return (
     <Container>
       {
-        activities && activities.length > 0 
-        ? screen() : <TextLoading>Carregando...</TextLoading>
+        activities && activities.length > 0
+          ? screen() : <TextLoading>Carregando...</TextLoading>
       }
-      {isModalActivitiesCompleted && <ActivitiesCompleted score={score} history={props.history}/>}
-      {props.isActivityLimit && <OfflineModal handleCloseModal={() => handleCloseModal()}/>}
-      {!activities.length && <ModalNoActivity />}
+      {isModalActivitiesCompleted && <ActivitiesCompleted score={score} history={props.history} />}
+      {props.isActivityLimit && <OfflineModal handleCloseModal={() => handleCloseModal()} />}
+      {errorLoadingTrack && <ModalNoActivity />}
     </Container>
   );
 }

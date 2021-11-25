@@ -41,7 +41,8 @@ export default function Modal({
   font,
   balloonColor,
   isError,
-  btnHeight
+  btnHeight,
+  repeat,
 }) {
   const renderElifas = () => {
     switch (elifas) {
@@ -88,7 +89,7 @@ export default function Modal({
           isError={isError}
           elifas={elifas}
         >
-          {isWrongAnswer && <S.Figure backgroundImg={backgroundImg} />}
+          {isWrongAnswer && <S.Figure backgroundImg={backgroundImg} repeat={repeat} />}
 
           {title && <S.Title>{title}</S.Title>}
           <S.TutorialBox>

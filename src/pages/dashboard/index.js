@@ -167,7 +167,7 @@ const Dashboard = (props) => {
   };
 
   return (
-    isLoading ? <Loader dashboard/> : (
+    isLoading ? <Loader/> : (
       <Container>
         {!props.modals.welcomeModal.wasShowed && <WelcomeModal showThunk={() => handleModalThunk} handleClose={handleCloseModal} />}
         <Header
