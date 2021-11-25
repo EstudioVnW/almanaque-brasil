@@ -1,8 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 // Styles
 const Content = styled.button`
+  position: relative;
   padding-top: 5px;
   margin: ${props => props.margin || 'auto'};
 	width: 100%;
@@ -36,6 +37,37 @@ const Btn = styled.p`
   text-transform: uppercase;
 `
 
+// @keyframes spin {
+//   0% { transform: rotate(0deg); }
+//   100% { transform: rotate(360deg); }
+// }
+
+const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const Loader = styled.div`
+  animation: ${rotate360} 1s linear infinite;
+  transform: translateZ(0);
+  
+  position: absolute;
+  right: 1rem;
+  border-top: 2px solid grey;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
+  border-left: 4px solid black;
+  background: transparent;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+`
+
+
 const Button = ({
   height,
   width,
@@ -48,6 +80,7 @@ const Button = ({
   color,
   isIcon,
   icon,
+  isLoading,
 }) => {
   return (
     <Content
@@ -60,6 +93,7 @@ const Button = ({
     >
       {isIcon && <Image src={icon}  alt='' width={width}/>}
       <Btn color={color}>{children}</Btn>
+      {isLoading && <Loader />}
     </Content>
   );
 }
