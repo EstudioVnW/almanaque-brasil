@@ -34,7 +34,7 @@ export default function Modal({
   btnContent,
   buttonBg,
   elifasWidth,
-  elifasPos,
+  elifasBottom,
   elifas,
   noAbsolute,
   fontWeight,
@@ -49,7 +49,7 @@ export default function Modal({
         return <S.ImgElifas
             isWelcome
             elifasWidth={elifasWidth}
-            elifasPos={elifasPos}
+            elifasBottom={elifasBottom}
             src={guideElifas}
             alt="Personagem Elifas com mochila nas costas"
           />
@@ -57,15 +57,16 @@ export default function Modal({
         return <S.ImgElifas
             isTutorial={isTutorial}
             elifasWidth={elifasWidth}
-            elifasPos={elifasPos}
+            elifasBottom={elifasBottom}
             src={okElifas}
             alt="Personagem Elifas fazendo sinal de ok"
           />
       case 'tip':
         return <S.ImgElifas
+            isWrongAnswer={isWrongAnswer}
             isTutorial={isTutorial}
             elifasWidth={elifasWidth}
-            elifasPos={elifasPos}
+            elifasBottom={elifasBottom}
             src={tipElifas}
             alt="Personagem Elifas apontando para o texto"
           />
