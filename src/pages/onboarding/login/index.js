@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 //Components
 import Form from '../../../components/form'
 import Header from '../../../components/header';
-import Loader from '../../../components/loader';
 
 //Redux
 import { signIn } from '../../../dataflow/modules/signIn-modules';
