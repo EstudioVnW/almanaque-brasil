@@ -2,25 +2,10 @@ import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import packageJson from '../../../package.json';
 import { connect } from 'react-redux';
-import { Auth } from 'aws-amplify';
 
 //Image
 import home from '../../images/dialogBox/dialogBoxLittle.svg';
 import elifas from '../../images/elifas/waving.svg';
-
-//Redux
-import { signOut } from '../../dataflow/modules/signIn-modules';
-import { clearModalsState } from '../../dataflow/modules/modals-module';
-
-const mapDispatchToProps = dispatch => ({
-  signOut: () => {
-    dispatch(signOut());
-  },
-
-  clearModalsState: () => {
-    dispatch(clearModalsState())
-  },
-});
 
 const AnimBall = keyframes`
   0%{transform: translateY(0)}
@@ -110,7 +95,7 @@ const BoxContainer = styled.div`
 const Loader = (props) => {
 
   useEffect(() => {
-    if (props.dashboard === true) handleCleanCaches();
+   handleCleanCaches();
   });
 
   const handleCleanCaches = async () => {
@@ -135,12 +120,7 @@ const Loader = (props) => {
         madeRequisition = true;
       }
     } catch (error) {
-      props.clearModalsState();
-      localStorage.clear();
-      props.signOut();
-      await Auth.signOut();
-      props.history.push('/');
-      console.log('error', error);
+      console.log('error loader', error);
     }
   }
 
@@ -164,7 +144,4 @@ const Loader = (props) => {
   );
 };
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(Loader);
+export default Loader;

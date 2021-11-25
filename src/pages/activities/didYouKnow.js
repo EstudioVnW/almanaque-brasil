@@ -49,10 +49,10 @@ const DidYouKnow = (props) => {
   const [score, setScore] = useState(undefined)
 
   useEffect(() => {
-    let timer1 = setTimeout(() => setIsLoading(false), 2000);
+    let timer = setTimeout(() => setIsLoading(false), 2000);
 
     return () => {
-      clearTimeout(timer1);
+      clearTimeout(timer);
     };
   }, []);
 

@@ -68,7 +68,7 @@ export const Figure = styled.figure`
   width: 100%;
   height: 100%;
   background: ${props => props.backgroundImg};
-  background-repeat: no-repeat;
+  background-repeat: ${props => props.repeat ? 'repeat-x' : 'no-repeat'};
   border-radius: ${props => props.isTutorial ? '30px' : '20px'};
 `;
 
