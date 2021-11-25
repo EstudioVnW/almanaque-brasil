@@ -46,60 +46,6 @@ const ContentDialogBox = styled.div`
   }
 `;
 
-const DialogBox = styled.div`
-  position: absolute;
-  top: 5px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 95%;
-  min-height: 261px;
-  max-height: 285px;
-  border-radius: 25px;
-  text-align: center;
-  background-image: url("${props => props.backgroundImg}");
-  background-position: ${props => props.backgroundPosition};
-  background-size:  ${props => props.backgroundSize};
-  background-repeat: no-repeat;
-  z-index: 1;
-  overflow-y: auto; 
-
-  ::-webkit-scrollbar {
-		width: 4px;
-		height: 10px;
-	}
-	::-webkit-scrollbar-track {
-		background: transparent;
-		border-radius: 20px;
-	}
-	::-webkit-scrollbar-thumb {
-    background: transparent;
-		border-radius: 13px;
-	}
-	::-webkit-scrollbar-thumb:hover {
-    background: transparent;
-	}
-  
-  h1 {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.5rem;
-    font-weight: 900;
-    line-height: 1.4;
-    color: #FB6C76;
-
-    @media(max-width: 320px) {
-      font-size: 1.4rem;
-    }
-  }
-
-  p {
-    font-size: 1rem;
-    margin: .6rem 0;
-    color: #161616;
-  }
-`;
-
 const MsgError = styled.p`
   margin: auto;
   text-align: center;
@@ -220,14 +166,14 @@ function WrongAnswer({ chances, handleClick, handleShowAnswer, errorMessages }) 
           backgroundImg={setFigure()}
           subtitle={chances !== 0 ? errorMessage : noChances}
           data={renderText(isFirstMistake, errorMessages)}
-          bottom='3.5rem'
+          bottom='4rem'
           padding='2rem 7px 1rem'
           width
           font='1.4em'
           color='#fb6c76'
           elifas='tip'
-          elifasPos='7.5rem'
-          elifasWidth='9.5rem'
+          elifasBottom='8.5rem'
+          elifasWidth='9rem'
           isWrongAnswer
           repeat={chances === 1}
         />
