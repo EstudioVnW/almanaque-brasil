@@ -179,7 +179,7 @@ export const Text = styled.li`
 export const ImgElifas = styled.img`
   position: absolute;
   right: ${props => props.isWelcome ? '-11' : '0'}%;
-  bottom: ${props => props.elifasPos || '0'};
+  bottom: ${props => props.elifasBottom || '0'};
   width: ${props => props.elifasWidth || '10rem'};
 
   @media (max-width: 425px) {
@@ -188,5 +188,9 @@ export const ImgElifas = styled.img`
   
   @media (max-height: 580px) {
     width: ${props => props.isWelcome ? '12' : '7.5'}rem;
+  }
+
+  @media (min-height: 700px) {
+    ${props => props.isWrongAnswer && 'bottom: 9rem; width: 11rem'};
   }
 `;
