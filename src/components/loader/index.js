@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import packageJson from '../../../package.json';
-import { connect } from 'react-redux';
 
 //Image
 import home from '../../images/dialogBox/dialogBoxLittle.svg';
@@ -104,6 +103,7 @@ const Loader = (props) => {
     let madeRequisition = false;
 
     try {
+      // eslint-disable-next-line eqeqeq
       if (getVersionLocalStorage != getVersionPackage && !madeRequisition) {
         // clean caches
         if ('caches' in window) {
