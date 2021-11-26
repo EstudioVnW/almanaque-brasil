@@ -14,7 +14,7 @@ const Row = styled.header`
   flex-direction: row;
   justify-content: space-around;
   position: absolute;
-  top: 20px;
+  top: .938rem;
   width: 100%;
   z-index: 2;
 `;

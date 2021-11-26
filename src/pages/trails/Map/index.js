@@ -35,13 +35,13 @@ const MapBackground = styled.div`
     min-height: auto;
     bottom: 2rem;
     left: -1.5rem;
-    transform: scaleY(.75);
+    transform: scaleY(.8);
   }
   
   @media (max-width: 320px) {
     left: -.5rem;
-    bottom: -1.5rem;
-    transform: scale(.8,.8);
+    bottom: -2.5rem;
+    transform: scale(.8,.7);
     min-height: 100%;
     height: -webkit-fill-available;
   }
