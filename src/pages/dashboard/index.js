@@ -48,6 +48,10 @@ const Content = styled.main`
   position: relative;
   padding: 3.188rem 1rem 0;
   max-width: 425px;
+
+  @media (max-width: 425px) {
+    padding-top: 2rem;
+  }
 `;
 
 const Text = styled.h1`
