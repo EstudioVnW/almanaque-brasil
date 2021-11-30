@@ -204,6 +204,7 @@ const Activities = (props) => {
     return () => {
       clearTimeout(setError);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handlerNextActivitie = (index, activityId) => {

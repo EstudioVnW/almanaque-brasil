@@ -96,6 +96,7 @@ const Trails = (props) => {
     return () => {
       clearTimeout(setError);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleActivities = (trail) => {

@@ -8,6 +8,7 @@ import Header from '../header';
 //Styles
 const Container = styled.div`
   position: fixed;
+  top: 0;
   bottom: 0;
   width: 100%;
   max-width: 26.5625rem;
@@ -52,9 +53,9 @@ const MessageBox = styled.div`
 
 const Img = styled.img`
   width: 100%;
-  min-height: 400px;
+  min-height: 375px;
   max-width: 500px;
-  object-fit: fill;
+  object-fit: cover;
 
   @media(max-width: 425px) {max-height: 310px;}
   @media(min-width: 1024px) {height: 40vh;  object-fit: cover;}
