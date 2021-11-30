@@ -53,9 +53,9 @@ const MessageBox = styled.div`
 
 const Img = styled.img`
   width: 100%;
-  min-height: 400px;
+  min-height: 375px;
   max-width: 500px;
-  object-fit: fill;
+  object-fit: cover;
 
   @media(max-width: 425px) {max-height: 310px;}
   @media(min-width: 1024px) {height: 40vh;  object-fit: cover;}
