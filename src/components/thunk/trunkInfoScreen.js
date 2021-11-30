@@ -8,6 +8,7 @@ import Header from '../header';
 //Styles
 const Container = styled.div`
   position: fixed;
+  top: 0;
   bottom: 0;
   width: 100%;
   max-width: 26.5625rem;
