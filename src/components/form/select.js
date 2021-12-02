@@ -7,14 +7,17 @@ import arrow from '../../images/icons/onboarding/arrow.svg';
 
 // Styles
 const Content = styled.div`
-  margin-top: 1rem;
+  position: relative;
+  margin: 1rem auto 0;
   padding: 0 1rem;
-  width: 100%;
+  width: 90%;
   border-radius: 8px;
   font-size: 1rem;
   color: #373737;
-  background: #fff;
   font-weight: 900;
+  background: #EBEBEB;
+  user-select: none;
+  cursor: pointer;
 `;
 
 const Text = styled.p`
@@ -23,14 +26,27 @@ const Text = styled.p`
   color: ${props => props.active ? '#373737' : '#B9B9B9'};
 `;
 
-const Option = styled.div`
-  padding: .25rem 0 .25rem .25rem;
+const OptionsBox = styled.div`
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  padding: 1rem .5rem .5rem;
   width: 100%;
-  border-radius: 8px;
-  font-size: 1rem;
+  transform: ${props => !props.isOpen && 'translateY(2px)'};
+  border-radius: 0 0 8px 8px;
+  background: #EBEBEB;
+  transition: .2s ease;
+  z-index: 1;
+`;
+
+const Option = styled.div`
+  padding: .6rem .5rem .4rem;
+  width: 100%;
   color: #373737;
-  background: #fff;
+  font-size: 1rem;
   font-weight: 900;
+  border-radius: 8px;
+  transition: .4s ease;
 
   :hover{
     background-color: #F3F3F3;
@@ -42,17 +58,19 @@ const Figure = styled.figure`
   float: right;
   margin: .75rem 0 .625rem 0;
   
-  >img{
+  > img {
     width: 70%;
     transform: ${props => props.isOpen ? 'rotate(90deg)' : 'rotate(-90deg)'};
+    transition: .2s ease;
   }
 `;
 
 const Select = ({ name, value, handleChange }) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+
   const handleCloseModal = () => {
     setIsOpen(!isOpen)
-  }
+  };
 
   const handleSelect = (ev, value) => {
     ev.stopPropagation();
@@ -64,15 +82,14 @@ const Select = ({ name, value, handleChange }) => {
     })
 
     handleCloseModal();
-  }
+  };
 
   const renderOptions = () => (
-    <>
+    <OptionsBox>
       <Option onClick={(ev) => handleSelect(ev, 'sim')}>Sim</Option>
       <Option onClick={(ev) => handleSelect(ev, 'não')}>Não</Option>
-    </>
-  )
-
+    </OptionsBox>
+  );
 
   return (
     <Content

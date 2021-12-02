@@ -19,6 +19,8 @@ const CloseBtn = styled.button`
 
 export default function CloseModal({
   handleClick,
+  btnMargin,
+  btnWidth,
   height,
   btnContent,
   buttonBg,
@@ -46,6 +48,7 @@ export default function CloseModal({
         {btnContent !== undefined ? 
           <Button
             margin=".5rem 0 .9rem"
+            btnWidth={btnWidth}
             height={height ? "2.313rem" : "2rem"}
             buttonBg={buttonBg}
             handleClick={handleClick}
