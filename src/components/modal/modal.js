@@ -43,6 +43,7 @@ export default function Modal({
   font,
   balloonColor,
   isError,
+  btnWidth,
   btnHeight,
   repeat,
   isQuestionKinship,
@@ -128,7 +129,7 @@ export default function Modal({
                     isScore={isScore}
                     width={width}
                   >{data}</S.Text>
-                  : data.map(item =>
+                  : data !== undefined && data.map(item =>
                     <S.Text
                       margin={margin}
                       isIcon={isIcon}
@@ -153,6 +154,7 @@ export default function Modal({
 
           {!isError && !isWrongAnswer && !btnContent &&
             <CloseBtn
+              btnWidth={btnWidth}
               height={btnHeight}
               handleCloseTutorial={handleCloseTutorial}
               handleModalTip={handleModalTip}
@@ -166,6 +168,7 @@ export default function Modal({
           }
           {btnContent &&
             <CloseBtn
+              btnWidth={btnWidth}
               height={btnHeight}
               handleCloseTutorial={handleCloseTutorial}
               handleModalTip={handleModalTip}

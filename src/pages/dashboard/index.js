@@ -9,7 +9,7 @@ import Footer from '../../components/footer/footerMenu';
 import WelcomeModal from '../../components/modal/welcomeModal';
 import TrunkInfoScreen from '../../components/thunk/trunkInfoScreen';
 import Loader from '../../components/loader';
-import ModalQuestionKinship from "../../components/modal/modal";
+import ModalQuestionKinship from '../../components/modal/modal';
 
 //Image
 import home from '../../images/icons/menu/selectedHome.svg';
@@ -38,6 +38,7 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+//Styles
 const Container = styled.div`
   padding-bottom: 1rem;
   min-height: 100vh;
@@ -149,13 +150,6 @@ const Dashboard = (props) => {
     getSurvey === false && setIsModalKinship(true);
   }, []);
 
-  const content = {
-    text: [
-      'Você possui parentesco com alguém da GERDAU?'
-    ],
-    button: 'enviar'
-  };
-
   const handleChangeSelect = (ev) => {
     setKinship(ev.target.value);
     setIsError(false);
@@ -227,17 +221,25 @@ const Dashboard = (props) => {
     }
   };
 
+  const content = {
+    title: 'Você possui parentesco com alguém da GERDAU?',
+    button: 'responder'
+  };
+
   const RenderModalQuestionKinship = () => (
     <ModalQuestionKinship
-      minHeight='20.125rem'
+      padding='2rem 0 3rem'
+      minHeight='19rem'
       isQuestionKinship
-      data={content.text}
+      subtitle={content.title}
       background='#ababab45'
       handleClick={handleSubmit}
       btnContent={content.button}
+      btnWidth='90%'
       buttonBg='#ffd000'
+      font='1.45em'
       elifas='guide'
-      elifasWidth='14rem'
+      elifasWidth='13.5rem'
       label='Você possui parentesco com alguém da GERDAU?'
       name='kinship'
       value={kinship}
@@ -247,12 +249,19 @@ const Dashboard = (props) => {
       children='Finalizar'
       isError={isError === true && 'Por favor, Selecione uma opção'}
     />
-  )
+  );
 
   return (
     isLoading ? <Loader /> : (
       <Container>
-        {!props.modals.welcomeModal.wasShowed && <WelcomeModal showThunk={() => handleModalThunk} handleClose={handleCloseModal} />}
+        {isModalKinship ? <RenderModalQuestionKinship />
+          : !props.modals.welcomeModal.wasShowed && 
+          <WelcomeModal
+            showThunk={() => handleModalThunk}
+            handleClose={handleCloseModal}
+          />
+        }
+
         <Header
           home
           bottom='-6px'
@@ -293,9 +302,9 @@ const Dashboard = (props) => {
           )}
           {props.modals.welcomeModal.wasShowed && <ElifasSVG onClick={() => handleCloseModal()} src={elifas} />}
         </Content>
+
         {modalThunk?.isModal && <TrunkInfoScreen itemData={modalThunk?.data} onClick={handleModalThunk} />}
         <Footer screen='dashboard' />
-        {isModalKinship && <RenderModalQuestionKinship />}
       </Container>
     )
   );
