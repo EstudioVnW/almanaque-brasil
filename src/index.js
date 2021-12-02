@@ -16,6 +16,7 @@ Amplify.configure({
 		userPoolWebClientId: process.env.REACT_APP_COGNITO_WEB_CLIENT_ID,
 		clientId: process.env.REACT_APP_COGNITO_WEB_CLIENT_ID,
 		region: process.env.REACT_APP_COGNITO_REGION,
+		survey: process.env.REACT_APP_SURVEY_ENDPOINT,
 
 		oauth: {
 			domain: process.env.REACT_APP_DOMAIN,

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 //Component
 import Header from '../../components/header/headerYellow';
@@ -8,6 +9,7 @@ import Footer from '../../components/footer/footerMenu';
 import WelcomeModal from '../../components/modal/welcomeModal';
 import TrunkInfoScreen from '../../components/thunk/trunkInfoScreen';
 import Loader from '../../components/loader';
+import ModalQuestionKinship from "../../components/modal/modal";
 
 //Image
 import home from '../../images/icons/menu/selectedHome.svg';
@@ -108,6 +110,10 @@ const Dashboard = (props) => {
   const [modalThunk, setModalThunk] = useState({ isModal: false, data: undefined });
   const [showWelcomeModal, setWelcomeModal] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalKinship, setIsModalKinship] = useState(undefined);
+  const [kinship, setKinship] = useState(undefined);
+  const [isError, setIsError] = useState(undefined);
+
   const trails = props?.trails;
   const thunks = props?.thunk;
 
@@ -125,8 +131,8 @@ const Dashboard = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-   //Loading
-   useEffect(() => {
+  //Loading
+  useEffect(() => {
     const hasTrails = trails.length > 0;
     const hasThunk = thunks.length > 0;
     setIsLoading(true);
@@ -135,6 +141,57 @@ const Dashboard = (props) => {
       setIsLoading(false);
     }
   }, [trails, thunks]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(async () => {
+    const getSurvey = await handleRequestSurvey('get'); //vem falso
+
+    getSurvey === false && setIsModalKinship(true);
+  }, []);
+
+  const content = {
+    text: [
+      'Você possui parentesco com alguém da GERDAU?'
+    ],
+    button: 'enviar'
+  };
+
+  const handleChangeSelect = (ev) => {
+    setKinship(ev.target.value);
+    setIsError(false);
+  }
+
+  const handleRequestSurvey = async (request) => {
+    const idToken = localStorage.getItem('idToken');
+    try {
+      const response = await axios({
+        method: request,
+        url: 'https://5ltaa6klie.execute-api.us-east-1.amazonaws.com/dev/survey',
+        // url: 'https://5ltaa6klie.execute-api.us-east-1.amazonaws.com/prod/survey',
+        // url: process.env.REACT_APP_SURVEY_ENDPOINT,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `${idToken}`,
+        },
+        data: {"gerdauAnswer": kinship}
+      })
+
+      request === 'post' && setIsModalKinship(false);
+      return response?.data?.answeredSurvey
+    } catch (err) {
+      console.log('err Survey', err);
+    }
+  }
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+    if (kinship) {
+      handleRequestSurvey('post')
+      setIsError(false);
+    } else {
+      setIsError(true);
+    }
+  }
 
   const handleClick = (route) => {
     props.history.push({ pathname: `/${route}` });
@@ -170,8 +227,30 @@ const Dashboard = (props) => {
     }
   };
 
+  const RenderModalQuestionKinship = () => (
+    <ModalQuestionKinship
+      minHeight='20.125rem'
+      isQuestionKinship
+      data={content.text}
+      background='#ababab45'
+      handleClick={handleSubmit}
+      btnContent={content.button}
+      buttonBg='#ffd000'
+      elifas='guide'
+      elifasWidth='14rem'
+      label='Você possui parentesco com alguém da GERDAU?'
+      name='kinship'
+      value={kinship}
+      placeholder='Digite seu name aqui'
+      handleChange={handleChangeSelect}
+      selector
+      children='Finalizar'
+      isError={isError === true && 'Por favor, Selecione uma opção'}
+    />
+  )
+
   return (
-    isLoading ? <Loader/> : (
+    isLoading ? <Loader /> : (
       <Container>
         {!props.modals.welcomeModal.wasShowed && <WelcomeModal showThunk={() => handleModalThunk} handleClose={handleCloseModal} />}
         <Header
@@ -216,6 +295,7 @@ const Dashboard = (props) => {
         </Content>
         {modalThunk?.isModal && <TrunkInfoScreen itemData={modalThunk?.data} onClick={handleModalThunk} />}
         <Footer screen='dashboard' />
+        {isModalKinship && <RenderModalQuestionKinship />}
       </Container>
     )
   );

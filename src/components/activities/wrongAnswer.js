@@ -85,7 +85,6 @@ function WrongAnswer({ chances, handleClick, handleShowAnswer, errorMessages }) 
   const history = useHistory();
   const [hasChances, setHasChance] = useState(true);
   const [isFirstMistake, setIsFirstMistake] = useState(true);
-  console.log(hasChances)
 
   useEffect(() => {
     if (chances < 2) setIsFirstMistake(false)

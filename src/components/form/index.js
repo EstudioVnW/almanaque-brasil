@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Input from './input';
 import Button from '../buttons/button';
 import Select from './contentSelect';
+import CheckBox from './checkBox';
 
 // Styles
 const Container = styled.form`
@@ -74,10 +75,11 @@ const Form = ({
   passValue,
   handleLogin,
   isLoading,
+  finished
 }) => {
 
   return login
-    ?(
+    ? (
       <Container onSubmit={handleLogin} login>
         <Label login={login}>Email</Label>
         <Input
@@ -134,9 +136,16 @@ const Form = ({
             <Error>{isError}</Error>
           </>
         )}
-        <Button margin='0'>{children ? children : 'Próximo'}</Button>  
+        {finished && (
+          <CheckBox
+            isSelected={isTermsAccepted}
+            onClick={handleAceptTerms}
+            attention={attention}
+          />
+        )}
+        <Button margin='0'>{children ? children : 'Próximo'}</Button>
       </Container>
-  );
+    );
 }
 
 export default Form;
