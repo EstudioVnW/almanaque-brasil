@@ -6,7 +6,7 @@ const Content = styled.button`
   position: relative;
   padding-top: 5px;
   margin: ${props => props.margin || 'auto'};
-	width: 100%;
+	width: ${props => props.btnWidth || '100%'};
 	height: ${props => props.height || '2.375rem'};
   max-width: 425px;
 	display: flex;
@@ -26,7 +26,7 @@ const Content = styled.button`
 const Image = styled.img`
   margin-right: 1rem;
   width: ${props => props.width || '.9375rem'};
-`
+`;
 
 const Btn = styled.p`
   max-width: 300px;
@@ -35,7 +35,7 @@ const Btn = styled.p`
   letter-spacing: .05rem;
 	color: ${props => props.color || "#373737"};
   text-transform: uppercase;
-`
+`;
 
 // @keyframes spin {
 //   0% { transform: rotate(0deg); }
@@ -65,10 +65,10 @@ const Loader = styled.div`
   width: 24px;
   height: 24px;
   border-radius: 50%;
-`
-
+`;
 
 const Button = ({
+  btnWidth,
   height,
   width,
   buttonBg,
@@ -84,6 +84,7 @@ const Button = ({
 }) => {
   return (
     <Content
+      btnWidth={btnWidth}
       height={height}
       background={buttonBg}
       boxShadow={boxShadow}

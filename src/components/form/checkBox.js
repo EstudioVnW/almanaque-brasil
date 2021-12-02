@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 //Component
@@ -43,9 +43,18 @@ const Text = styled.p`
   }
 `;
 
+const Label = styled.label`
+  max-width: 300px;
+  text-align: center;
+  padding: ${props => props.login ? '1rem 0 .5rem' : '2rem 0 .5rem'};
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #373737;
+`;
+
 const CheckBox = ({ attention, isSelected, onClick }) => {
   const [isModalTermOfUse, setIsModalTermOfUse] = useState(undefined);
-  
+
   const handleModalTermOfUse = () => {
     setIsModalTermOfUse(!isModalTermOfUse);
   }
@@ -56,9 +65,8 @@ const CheckBox = ({ attention, isSelected, onClick }) => {
         {isSelected && <CheckIcon />}
       </Check>
       <Text>Concordo com os <strong onClick={handleModalTermOfUse}>termos de uso</strong> do app...</Text>
-      {isModalTermOfUse && <TermOfUse closeModal={handleModalTermOfUse}/>}
-
-    </Content>  
+      {isModalTermOfUse && <TermOfUse closeModal={handleModalTermOfUse} />}
+    </Content>
   );
 }
 

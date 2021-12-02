@@ -3,13 +3,13 @@ import styled from 'styled-components';
 export const Container = styled.div`
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  width: 100%;
+  max-width: 425px;
+  height: -webkit-fill-available;
   background: ${props => props.background || '#ababab'};
   overflow: hidden;
   z-index: 5;
@@ -36,7 +36,7 @@ export const ContentInfo = styled.div`
   margin: 0 auto;
   padding: ${props => props.padding || '1.5rem 1rem 1rem'};
   width: 91%;
-  min-height: ${props => props.isTip && '55vh'};
+  min-height: ${props => (props.isTip && '55vh') || props.minHeight };
   letter-spacing: 1px;
   filter: ${props => !props.isError && 'drop-shadow(1px 4px 3px #999)'};
   border-radius: ${props => props.isTutorial ? '30px' : '20px'};
@@ -93,7 +93,7 @@ export const Subtitle = styled.h1`
   margin: .5rem 0 ${props => props.isTutorial ? '2.5rem' : '.7rem'};
   text-align: center;
   font-size: ${props => props.font || '1.25em'};
-  line-height: ${props => !props.isResend && '1'};
+  line-height: ${props => !props.isResend && '1.3'};
   font-weight: ${props => props.fontWeight || '900'};
   color: ${props => props.color || '#373737'};
 

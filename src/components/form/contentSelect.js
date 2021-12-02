@@ -18,19 +18,16 @@ const ContentSelect = ({
   value,
   isError,
   handleChange,
-  isTermsAccepted,
-  handleAceptTerms,
-  attention,
 }) => {
   return (
     <>
       <Select value={value} name={name} handleChange={(value) => handleChange(value)} />
       <Error>{isError}</Error>
-      <CheckBox
+      {/* <CheckBox
         isSelected={isTermsAccepted}
         onClick={handleAceptTerms}
         attention={attention}
-      />
+      /> */}
     </>
   );
 }
