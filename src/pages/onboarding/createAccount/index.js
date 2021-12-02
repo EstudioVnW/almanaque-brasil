@@ -82,7 +82,6 @@ const CreateAccount = (props) => {
         },
         custom: {
           // isGerdauRelated: kinship,
-          // isGerdauRelated: false,
           agreeTermsOfUse: isTermsAccepted,
         },
       });
@@ -94,8 +93,6 @@ const CreateAccount = (props) => {
       }
       setAttention(false);
       console.log('error signing up:', error);
-      console.log('errinho');
-
     }
   }
 
