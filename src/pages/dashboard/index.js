@@ -157,12 +157,11 @@ const Dashboard = (props) => {
 
   const handleRequestSurvey = async (request) => {
     const idToken = localStorage.getItem('idToken');
+    console.log('survey:', process.env.REACT_APP_SURVEY_ENDPOINT)
     try {
       const response = await axios({
         method: request,
-        url: 'https://5ltaa6klie.execute-api.us-east-1.amazonaws.com/dev/survey',
-        // url: 'https://5ltaa6klie.execute-api.us-east-1.amazonaws.com/prod/survey',
-        // url: process.env.REACT_APP_SURVEY_ENDPOINT,
+        url: process.env.REACT_APP_SURVEY_ENDPOINT,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `${idToken}`,
