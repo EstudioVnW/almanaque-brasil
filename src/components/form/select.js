@@ -24,7 +24,7 @@ const Text = styled.p`
 `;
 
 const Option = styled.div`
-  margin: 1rem 0;
+  padding: .25rem 0 .25rem .25rem;
   width: 100%;
   border-radius: 8px;
   font-size: 1rem;
@@ -50,6 +50,10 @@ const Figure = styled.figure`
 
 const Select = ({ name, value, handleChange }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const handleCloseModal = () => {
+    setIsOpen(!isOpen)
+  }
+
   const handleSelect = (ev, value) => {
     ev.stopPropagation();
     handleChange({
@@ -58,7 +62,10 @@ const Select = ({ name, value, handleChange }) => {
         value: value
       }
     })
+
+    handleCloseModal();
   }
+
   const renderOptions = () => (
     <>
       <Option onClick={(ev) => handleSelect(ev, 'sim')}>Sim</Option>
@@ -66,19 +73,17 @@ const Select = ({ name, value, handleChange }) => {
     </>
   )
 
+
   return (
     <Content
       name={name}
-      onClick={(ev) => {
-        ev.stopPropagation()
-        setIsOpen(!isOpen)
-      }}
+      onClick={handleCloseModal}
     >
       <Figure isOpen={isOpen}>
         <img src={arrow}></img>
       </Figure>
-      {(value === 'sim' && !isOpen) && <Text active>Sim</Text>}
-      {(value === 'não' && !isOpen) && <Text active>Não</Text>}
+      {(value === 'sim' && !isOpen) && <Text active onClick={handleCloseModal}>Sim</Text>}
+      {(value === 'não' && !isOpen) && <Text active onClick={handleCloseModal}>Não</Text>}
       {(value === undefined || isOpen) && <Text>Escolha uma opção:</Text>}
       {isOpen && renderOptions()}
     </Content>

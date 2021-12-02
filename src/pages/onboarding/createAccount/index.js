@@ -183,20 +183,13 @@ const CreateAccount = (props) => {
       const isEmailError = pageName === 'email' && 'Esse e-mail já existe';
       const isError = isNameError || isEmailError;
       if (lastScreen) {
-        console.log('aqui', !isPageNameValid)
-        console.log('aqui', isNameError)
-
         isTermsAccepted === false ? setAttention(true) : setAttention(false)
         // isKinshipValid ? setIsError({ [pageName]: false }) : setIsError({ [pageName]: true })
         !!isNameError.length && setIsError({
           [pageName]: true,
           msg: isNameError,
         });
-
-        // setIsError({ [pageName]: true })
       } else {
-        console.log('ou aqui')
-
         setIsError({
           [pageName]: true,
           msg: isError,

@@ -36,7 +36,7 @@ export const ContentInfo = styled.div`
   margin: 0 auto;
   padding: ${props => props.padding || '1.5rem 1rem 1rem'};
   width: 91%;
-  min-height: ${props => props.isTip && '55vh'};
+  min-height: ${props => (props.isTip && '55vh') || props.minHeight };
   letter-spacing: 1px;
   filter: ${props => !props.isError && 'drop-shadow(1px 4px 3px #999)'};
   border-radius: ${props => props.isTutorial ? '30px' : '20px'};
