@@ -28,23 +28,26 @@ export default function Tutorial() {
 
   return (
     <S.Container>
-      <Header title='Tutorial' />
-      <S.Content>
-        {tutorialData.map((item, i) => (
-          <Item
-            key={i}
-            title={item.game}
-            handleClick={() => handleGame(item, i)}
-          />
-        ))}
+      {modal ? (
+        <Modal
+          screen={game}
+          handleCloseTutorial={handleCloseTutorial}
+        />
+      ) : (
+        <>
+          <Header title='Tutorial' />
+          <S.Content>
+            {tutorialData.map((item, i) => (
+              <Item
+                key={i}
+                title={item.game}
+                handleClick={() => handleGame(item, i)}
+              />
+            ))}
 
-        {modal !== false &&
-          <Modal
-            screen={game}
-            handleCloseTutorial={handleCloseTutorial}
-          />
-        }
-      </S.Content>
+          </S.Content>
+        </>
+      )}
     </S.Container>
   );
 }
