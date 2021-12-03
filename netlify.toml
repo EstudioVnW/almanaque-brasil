@@ -15,7 +15,7 @@
   REACT_APP_ACTIONS_BOOK_ENDPOINT = "https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/actions"
   REACT_APP_TRAILS_ENDPOINT = "https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/trails"
   REACT_APP_TRUNK_ENDPOINT = "https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/chest"
-  REACT_APP_SURVEY_ENDPOINT = "https://5ltaa6klie.execute-api.us-east-1.amazonaws.com/prod/survey"
+  REACT_APP_SURVEY_ENDPOINT = "https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/survey"
   REACT_APP_IMAGES_ENDPOINT = "https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/images"
   REACT_APP_VERSION_ENDPOINT = "https://v0ba3uvbvc.execute-api.us-east-1.amazonaws.com/prod/version"
   REACT_APP_WELCOME_MODAL_TRUNK_CONTENT_TITLE = "Elifas Andreato"
