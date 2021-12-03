@@ -157,7 +157,9 @@ const Dashboard = (props) => {
 
   const handleRequestSurvey = async (request) => {
     const idToken = localStorage.getItem('idToken');
-    console.log('survey:', process.env.REACT_APP_SURVEY_ENDPOINT)
+    const surveyKinship = localStorage.getItem('surveyKinship')
+    
+    if(surveyKinship) return
     try {
       const response = await axios({
         method: request,
@@ -170,6 +172,7 @@ const Dashboard = (props) => {
       })
 
       request === 'post' && setIsModalKinship(false);
+      localStorage.setItem('surveyKinship', true)
       return response?.data?.answeredSurvey
     } catch (err) {
       console.log('err Survey', err);
